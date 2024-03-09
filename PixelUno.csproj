@@ -6,7 +6,6 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <Nullable>enable</Nullable>
     <LangVersion>12</LangVersion>
-    <PublishAot>true</PublishAot>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Scenes\" />
