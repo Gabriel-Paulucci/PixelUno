@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace PixelUno.Entities.Card;
@@ -9,6 +10,6 @@ public partial class CardEntity : Node2D
 
 	public override void _EnterTree()
 	{
-		CardFront.Frame = (int)Type;
+		CardFront.Frame = new Random().Next(0, 43);
 	}
 }
