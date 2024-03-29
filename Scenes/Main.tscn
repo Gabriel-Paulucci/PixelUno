@@ -1,20 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://6harbl4vol2q"]
+[gd_scene load_steps=3 format=3 uid="uid://6harbl4vol2q"]
 
 [ext_resource type="PackedScene" uid="uid://chouje6bh08ni" path="res://Entities/Card/Card.tscn" id="1_7aafo"]
+[ext_resource type="PackedScene" uid="uid://be435qdm334jy" path="res://Entities/Table/Table.tscn" id="2_ln4ma"]
 
 [node name="Main" type="Node2D"]
 
+[node name="Card8" parent="." instance=ExtResource("1_7aafo")]
+position = Vector2(0, -8)
+Lock = true
+
+[node name="Card7" parent="." instance=ExtResource("1_7aafo")]
+position = Vector2(296, 240)
+
+[node name="Card6" parent="." instance=ExtResource("1_7aafo")]
+position = Vector2(200, 241)
+
+[node name="Card5" parent="." instance=ExtResource("1_7aafo")]
+position = Vector2(104, 242)
+
 [node name="Card4" parent="." instance=ExtResource("1_7aafo")]
-position = Vector2(102, 222)
+position = Vector2(2, 244)
 
 [node name="Card3" parent="." instance=ExtResource("1_7aafo")]
-position = Vector2(2, 236)
+position = Vector2(-95, 244)
 
 [node name="Card2" parent="." instance=ExtResource("1_7aafo")]
-position = Vector2(-90, 238)
+position = Vector2(-190, 244)
 
 [node name="Card" parent="." instance=ExtResource("1_7aafo")]
-position = Vector2(-190, 237)
+position = Vector2(-290, 244)
 Type = 33
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Table" parent="." instance=ExtResource("2_ln4ma")]

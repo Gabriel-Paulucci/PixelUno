@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://be435qdm334jy"]
+
+[ext_resource type="Script" path="res://Entities/Table/TableEntity.cs" id="1_5xbs3"]
+
+[node name="Table" type="Node2D"]
+script = ExtResource("1_5xbs3")

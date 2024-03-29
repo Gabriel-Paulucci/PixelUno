@@ -55,5 +55,6 @@ public enum CardType
     GreenReverse,
     GreenPlus2,
     WildColor,
-    WildPlus4
+    WildPlus4,
+    Back
 }
