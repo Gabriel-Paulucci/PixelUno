@@ -1,9 +1,10 @@
 using System;
 using Godot;
+using PixelUno.Enums;
 
 namespace PixelUno.Entities.Card;
 
-public partial class CardEntity : Node2D
+public partial class Card : Node2D
 {
 	[Export] public required CardType Type { get; set; }
 	[Export] public required AnimatedSprite2D CardFront { get; set; }

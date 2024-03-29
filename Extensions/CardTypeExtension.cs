@@ -1,4 +1,6 @@
-﻿namespace PixelUno.Entities.Card;
+﻿using PixelUno.Enums;
+
+namespace PixelUno.Extensions;
 
 public static class CardTypeExtension
 {

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccps1ag01y12d"]
+
+[ext_resource type="Script" path="res://Entities/Deck/Deck.cs" id="1_f2qt3"]
+[ext_resource type="Texture2D" uid="uid://bmlrqhapnnaiq" path="res://Entities/Deck/Deck.png" id="2_0u2fp"]
+
+[node name="Deck" type="Node2D"]
+script = ExtResource("1_f2qt3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.47619, 1.47619)
+texture = ExtResource("2_0u2fp")

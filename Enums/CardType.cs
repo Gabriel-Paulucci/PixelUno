@@ -1,4 +1,4 @@
-﻿namespace PixelUno.Entities.Card;
+﻿namespace PixelUno.Enums;
 
 public enum CardType
 {

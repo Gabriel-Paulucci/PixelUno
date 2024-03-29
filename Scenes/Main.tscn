@@ -6,7 +6,6 @@
 [node name="Main" type="Node2D"]
 
 [node name="Card8" parent="." instance=ExtResource("1_7aafo")]
-position = Vector2(0, -8)
 Lock = true
 
 [node name="Card7" parent="." instance=ExtResource("1_7aafo")]

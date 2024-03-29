@@ -1,6 +1,6 @@
 [gd_scene load_steps=62 format=3 uid="uid://chouje6bh08ni"]
 
-[ext_resource type="Script" path="res://Entities/Card/CardEntity.cs" id="1_awrpy"]
+[ext_resource type="Script" path="res://Entities/Card/Card.cs" id="1_b5yk7"]
 [ext_resource type="Texture2D" uid="uid://qs5ae2yp2m8f" path="res://Entities/Card/Cards.png" id="1_sf4gg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lsumh"]
@@ -421,7 +421,7 @@ _data = {
 }
 
 [node name="Card" type="Node2D" node_paths=PackedStringArray("CardFront", "Area", "Animation")]
-script = ExtResource("1_awrpy")
+script = ExtResource("1_b5yk7")
 CardFront = NodePath("CardFront")
 Area = NodePath("CardFront/Area")
 Animation = NodePath("Animation")
