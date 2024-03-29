@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://itmyvi0odkd8"]
+
+[ext_resource type="Script" path="res://Entities/Player/Player.cs" id="1_1xh71"]
+[ext_resource type="PackedScene" uid="uid://chouje6bh08ni" path="res://Entities/Card/Card.tscn" id="2_grby6"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_1xh71")
+CardScene = ExtResource("2_grby6")

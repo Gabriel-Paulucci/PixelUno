@@ -1,14 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://be435qdm334jy"]
+[gd_scene load_steps=5 format=3 uid="uid://be435qdm334jy"]
 
 [ext_resource type="Script" path="res://Entities/Table/Table.cs" id="1_cc2gw"]
 [ext_resource type="PackedScene" uid="uid://ccps1ag01y12d" path="res://Entities/Deck/Deck.tscn" id="2_vavmh"]
 [ext_resource type="PackedScene" uid="uid://vhml6a3r0sob" path="res://Entities/Game/Game.tscn" id="3_3xmjd"]
+[ext_resource type="PackedScene" uid="uid://itmyvi0odkd8" path="res://Entities/Player/Player.tscn" id="4_pqsbt"]
 
-[node name="Table" type="Node2D" node_paths=PackedStringArray("Deck")]
+[node name="Table" type="Node2D" node_paths=PackedStringArray("Deck", "CurrentPlayer")]
 script = ExtResource("1_cc2gw")
 Deck = NodePath("Deck")
+CurrentPlayer = NodePath("CurrentPlayer")
 
 [node name="Deck" parent="." instance=ExtResource("2_vavmh")]
 position = Vector2(244, -112)
 
 [node name="Game" parent="." instance=ExtResource("3_3xmjd")]
+
+[node name="CurrentPlayer" parent="." instance=ExtResource("4_pqsbt")]
