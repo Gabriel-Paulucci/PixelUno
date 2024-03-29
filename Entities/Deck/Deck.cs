@@ -8,7 +8,28 @@ namespace PixelUno.Entities.Deck;
 
 public partial class Deck : Node2D
 {
+    [Export] public required Area2D Area { get; set; }
+
     private Queue<CardType> _cards = [];
+    private bool _hovered;
+
+    public override void _Ready()
+    {
+        Area.MouseExited += AreaOnMouseExited;
+        Area.MouseEntered += AreaOnMouseEntered;
+    }
+
+    private void AreaOnMouseEntered()
+    {
+        _hovered = true;
+        Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);
+    }
+
+    private void AreaOnMouseExited()
+    {
+        _hovered = false;
+        Input.SetDefaultCursorShape();
+    }
 
     public void Generate()
     {
@@ -21,7 +42,7 @@ public partial class Deck : Node2D
 
         AddWildCard(deck, CardType.WildColor);
         AddWildCard(deck, CardType.WildPlus4);
-        
+
         var cards = deck.ToArray();
         new Random().Shuffle(cards);
 

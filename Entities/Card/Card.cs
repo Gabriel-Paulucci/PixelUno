@@ -24,6 +24,8 @@ public partial class Card : Node2D
 			return;
 		
 		Animation.Play("hover");
+		
+		Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);
 	}
 
 	private void AreaOnMouseExited()
@@ -32,6 +34,8 @@ public partial class Card : Node2D
 			return;
 		
 		Animation.PlayBackwards("hover");
+		
+		Input.SetDefaultCursorShape();
 	}
 
 	public override void _EnterTree()

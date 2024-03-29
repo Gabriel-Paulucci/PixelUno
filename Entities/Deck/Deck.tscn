@@ -1,11 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccps1ag01y12d"]
+[gd_scene load_steps=4 format=3 uid="uid://ccps1ag01y12d"]
 
 [ext_resource type="Script" path="res://Entities/Deck/Deck.cs" id="1_f2qt3"]
 [ext_resource type="Texture2D" uid="uid://bmlrqhapnnaiq" path="res://Entities/Deck/Deck.png" id="2_0u2fp"]
 
-[node name="Deck" type="Node2D"]
-script = ExtResource("1_f2qt3")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18atn"]
+size = Vector2(58.2581, 100.935)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Deck" type="Node2D" node_paths=PackedStringArray("Area")]
+script = ExtResource("1_f2qt3")
+Area = NodePath("Sprite/Area")
+
+[node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(1.47619, 1.47619)
 texture = ExtResource("2_0u2fp")
+
+[node name="Area" type="Area2D" parent="Sprite"]
+
+[node name="Collision" type="CollisionShape2D" parent="Sprite/Area"]
+position = Vector2(-3.38401e-07, -1.69355)
+shape = SubResource("RectangleShape2D_18atn")
