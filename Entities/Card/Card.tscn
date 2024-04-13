@@ -430,10 +430,8 @@ Animation = NodePath("Animation")
 sprite_frames = SubResource("SpriteFrames_5d7f6")
 
 [node name="Area" type="Area2D" parent="CardFront"]
-position = Vector2(1, 0)
 
 [node name="Collision" type="CollisionShape2D" parent="CardFront/Area"]
-position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_qjbql")
 
 [node name="Animation" type="AnimationPlayer" parent="."]

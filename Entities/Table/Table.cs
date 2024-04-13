@@ -10,5 +10,10 @@ public partial class Table : Node2D
     public override void _Ready()
     {
         Deck.Generate();
+
+        for (var i = 0; i < 24; i++)
+        {
+            CurrentPlayer.AddCard(Deck.GetNextCard());
+        }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 using PixelUno.Enums;
 
@@ -35,7 +36,7 @@ public partial class Card : Node2D
     {
         if (Lock)
             return;
-
+        
         _hovered = true;
         Animation.Play("hover");
         Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);

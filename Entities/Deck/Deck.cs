@@ -35,10 +35,10 @@ public partial class Deck : Node2D
     {
         var deck = new List<CardType>();
 
-        AddColorCard(deck, CardType.Blue0, CardType.Blue1, CardType.BlueReverse);
-        AddColorCard(deck, CardType.Yellow0, CardType.Yellow1, CardType.YellowReverse);
-        AddColorCard(deck, CardType.Red0, CardType.Red1, CardType.RedReverse);
-        AddColorCard(deck, CardType.Green0, CardType.Green1, CardType.GreenReverse);
+        AddColorCard(deck, CardType.Blue0, CardType.Blue1, CardType.BluePlus2);
+        AddColorCard(deck, CardType.Yellow0, CardType.Yellow1, CardType.YellowPlus2);
+        AddColorCard(deck, CardType.Red0, CardType.Red1, CardType.RedPlus2);
+        AddColorCard(deck, CardType.Green0, CardType.Green1, CardType.GreenPlus2);
 
         AddWildCard(deck, CardType.WildColor);
         AddWildCard(deck, CardType.WildPlus4);
@@ -60,7 +60,7 @@ public partial class Deck : Node2D
 
     private static void AddColorCard(List<CardType> deck, CardType zero, CardType start, CardType end)
     {
-        var colorCard = Enumerable.Range((int)start, (int)end + 1)
+        var colorCard = Enumerable.Range((int)start, (int)end - (int)start + 1)
             .Select(x => (CardType)x)
             .ToList();
 

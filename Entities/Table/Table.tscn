@@ -11,8 +11,9 @@ Deck = NodePath("Deck")
 CurrentPlayer = NodePath("CurrentPlayer")
 
 [node name="Deck" parent="." instance=ExtResource("2_vavmh")]
-position = Vector2(244, -112)
+position = Vector2(248, -25)
 
 [node name="Game" parent="." instance=ExtResource("3_3xmjd")]
 
 [node name="CurrentPlayer" parent="." instance=ExtResource("4_pqsbt")]
+position = Vector2(0, 250)
