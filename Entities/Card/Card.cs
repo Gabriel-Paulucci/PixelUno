@@ -11,17 +11,23 @@ public partial class Card : Node2D
     [Export] public required AnimatedSprite2D CardFront { get; set; }
     [Export] public required Area2D Area { get; set; }
     [Export] public required AnimationPlayer Animation { get; set; }
-    [Export] public required bool Lock { get; set; }
-
+    [Export] public int Index { get; set; } = -1;
+    
     [Signal]
     public delegate void ClickEventHandler();
 
+    [Signal]
+    public delegate void MouseEnteredEventHandler(int zIndex);
+
+    [Signal]
+    public delegate void MouseExitedEventHandler(int zIndex);
+    
     private bool _hovered;
 
     public override void _Ready()
     {
-        Area.MouseEntered += AreaOnMouseEntered;
-        Area.MouseExited += AreaOnMouseExited;
+        Area.MouseEntered += () => EmitSignal(SignalName.MouseEntered, Index);
+        Area.MouseExited += () => EmitSignal(SignalName.MouseExited, Index);
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -32,28 +38,33 @@ public partial class Card : Node2D
         }
     }
 
-    private void AreaOnMouseEntered()
+    public override void _EnterTree()
     {
-        if (Lock)
+        CardFront.Frame = (int)Type;
+    }
+
+    public void Hover(bool exit)
+    {
+        if (exit)
+        {
+            _hovered = false;
+            Animation.PlayBackwards("hover");
+            Input.SetDefaultCursorShape();
+            ZIndex = Index;
             return;
+        }
         
         _hovered = true;
         Animation.Play("hover");
         Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);
+        ZIndex = 1000;
     }
 
-    private void AreaOnMouseExited()
+    public void UpdateZIndex()
     {
-        if (Lock)
+        if (_hovered)
             return;
-
-        _hovered = false;
-        Animation.PlayBackwards("hover");
-        Input.SetDefaultCursorShape();
-    }
-
-    public override void _EnterTree()
-    {
-        CardFront.Frame = (int)Type;
+        
+        ZIndex = Index;
     }
 }
