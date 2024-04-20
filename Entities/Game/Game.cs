@@ -21,6 +21,13 @@ public partial class Game : Node2D
                cardType.Symbol == LastCard.Symbol;
     }
 
+    public void AddFirstCard(CardType cardType)
+    {
+        var card = CardScene.Instantiate<Card.Card>();
+        card.Type = cardType;
+        AddChild(card);
+    }
+    
     public void AddCard(CardType cardType)
     {
         var random = new Random();

@@ -12,7 +12,7 @@ public partial class Player : Node2D
     [Export] public required PackedScene CardScene { get; set; }
 
     private List<Card.Card> Cards { get; set; } = [];
-    private HashSet<int> CardHovers { get; set; } = [];
+    private HashSet<Card.Card> CardHovers { get; set; } = [];
     
     [Signal]
     public delegate void SelectedCardEventHandler(Card.Card card);
@@ -37,44 +37,47 @@ public partial class Player : Node2D
         EmitSignal(SignalName.SelectedCard, card);
     }
 
-    private void CardOnMouseEntered(int zIndex)
+    private void CardOnMouseEntered(Card.Card card)
     {
-        if (CardHovers.Count == 0)
+        var topCard = CardHovers.MaxBy(x => x.Index);
+
+        if (topCard is null)
         {
-            CardHovers.Add(zIndex);
-            Cards.ElementAtOrDefault(zIndex)?.Hover(false);
+            card.Hover(false);
+            CardHovers.Add(card);
             return;
         }
         
-        var oldTopZIndex = CardHovers.Max();
-        CardHovers.Add(zIndex);
-        var newTopZIndex = CardHovers.Max();
-        
-        if (oldTopZIndex == newTopZIndex)
+        if (topCard == card)
             return;
 
-        Cards.ElementAtOrDefault(oldTopZIndex)?.Hover(true);
-        Cards.ElementAtOrDefault(newTopZIndex)?.Hover(false);
+        CardHovers.Add(card);
+
+        if (topCard.Index >= card.Index) 
+            return;
+        
+        topCard.Hover(true);
+        card.Hover(false);
     }
 
-    private void CardOnMouseExited(int zIndex)
+    private void CardOnMouseExited(Card.Card card)
     {
-        if (CardHovers.Count == 1)
+        var topCard = CardHovers.MaxBy(x => x.Index);
+
+        if (topCard is null)
+            return;
+
+        if (topCard != card)
         {
-            CardHovers.Remove(zIndex);
-            Cards.ElementAtOrDefault(zIndex)?.Hover(true);
+            CardHovers.Remove(card);
             return;
         }
         
-        var oldTopZIndex = CardHovers.Max();
-        CardHovers.Remove(zIndex);
-        var newTopZIndex = CardHovers.Max();
-        
-        if (oldTopZIndex == newTopZIndex)
-            return;
-        
-        Cards.ElementAtOrDefault(oldTopZIndex)?.Hover(true);
-        Cards.ElementAtOrDefault(newTopZIndex)?.Hover(false);
+        topCard.Hover(true);
+        CardHovers.Remove(card);
+
+        var newHover = CardHovers.MaxBy(x => x.Index);
+        newHover?.Hover(false);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -97,6 +100,8 @@ public partial class Player : Node2D
         Cards.Remove(card);
         Cards.Sort((x, y) => x.Type.Frame - y.Type.Frame);
         card.QueueFree();
-        CardHovers = [];
+        CardHovers.Remove(card);
+        var newHover = CardHovers.MaxBy(x => x.Index);
+        newHover?.Hover(false);
     }
 }

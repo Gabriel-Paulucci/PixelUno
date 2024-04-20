@@ -1,5 +1,4 @@
 using Godot;
-using PixelUno.Entities.Card;
 
 namespace PixelUno.Entities.Table;
 
@@ -12,15 +11,21 @@ public partial class Table : Node2D
     public override void _Ready()
     {
         Deck.Generate();
+        Deck.BuyCard += DeckOnBuyCard;
 
         for (var i = 0; i < 20; i++)
         {
             CurrentPlayer.AddCard(Deck.GetNextCard());
         }
         
-        Game.AddCard(Deck.GetNextCard());
+        Game.AddFirstCard(Deck.GetNextCard());
         
         CurrentPlayer.SelectedCard += CurrentPlayerOnSelectedCard;
+    }
+
+    private void DeckOnBuyCard()
+    {
+        CurrentPlayer.AddCard(Deck.GetNextCard());
     }
 
     private void CurrentPlayerOnSelectedCard(Card.Card card)

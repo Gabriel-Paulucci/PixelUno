@@ -13,7 +13,8 @@ config_version=5
 config/name="PixelUno"
 run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
-config/icon="res://Logo.png"
+config/icon="res://Icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [display]
 

@@ -14,17 +14,17 @@ public partial class Card : Node2D
     public delegate void ClickEventHandler(Card type);
 
     [Signal]
-    public delegate void MouseEnteredEventHandler(int zIndex);
+    public delegate void MouseEnteredEventHandler(Card zIndex);
 
     [Signal]
-    public delegate void MouseExitedEventHandler(int zIndex);
+    public delegate void MouseExitedEventHandler(Card zIndex);
     
     private bool _hovered;
 
     public override void _Ready()
     {
-        Area.MouseEntered += () => EmitSignal(SignalName.MouseEntered, Index);
-        Area.MouseExited += () => EmitSignal(SignalName.MouseExited, Index);
+        Area.MouseEntered += () => EmitSignal(SignalName.MouseEntered, this);
+        Area.MouseExited += () => EmitSignal(SignalName.MouseExited, this);
     }
 
     public override void _UnhandledInput(InputEvent @event)
