@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using PixelUno.Entities.Card;
-using PixelUno.Enums;
 
 namespace PixelUno.Entities.Player;
 
@@ -14,12 +13,16 @@ public partial class Player : Node2D
 
     private List<Card.Card> Cards { get; set; } = [];
     private HashSet<int> CardHovers { get; set; } = [];
+    
+    [Signal]
+    public delegate void SelectedCardEventHandler(Card.Card card);
 
     public void AddCard(CardType newCard)
     {
         var card = CardScene.Instantiate<Card.Card>();
         card.Type = newCard;
         card.Position = new Vector2(700, 0);
+        card.Click += CardOnClick;
         card.MouseEntered += CardOnMouseEntered;
         card.MouseExited += CardOnMouseExited;
 
@@ -27,6 +30,11 @@ public partial class Player : Node2D
         
         Cards.Add(card);
         Cards.Sort((x, y) => x.Type.Frame - y.Type.Frame);
+    }
+
+    private void CardOnClick(Card.Card card)
+    {
+        EmitSignal(SignalName.SelectedCard, card);
     }
 
     private void CardOnMouseEntered(int zIndex)
@@ -77,10 +85,18 @@ public partial class Player : Node2D
         var index = 0;
         foreach (var card in Cards)
         {
-            card.Position = card.Position.MoveToward(new Vector2(position, 0), (float)delta * 2000);
+            card.Position = card.Position.MoveToward(new Vector2(position, 0), (float)delta * 1500);
             card.Index = index++;
             card.UpdateZIndex();
             position += space;
         }
+    }
+
+    public void RemoveCard(Card.Card card)
+    {
+        Cards.Remove(card);
+        Cards.Sort((x, y) => x.Type.Frame - y.Type.Frame);
+        card.QueueFree();
+        CardHovers = [];
     }
 }

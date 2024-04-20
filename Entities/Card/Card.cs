@@ -11,7 +11,7 @@ public partial class Card : Node2D
     [Export] public int Index { get; set; } = -1;
     
     [Signal]
-    public delegate void ClickEventHandler();
+    public delegate void ClickEventHandler(Card type);
 
     [Signal]
     public delegate void MouseEnteredEventHandler(int zIndex);
@@ -31,7 +31,7 @@ public partial class Card : Node2D
     {
         if (@event.IsActionPressed("click") && _hovered)
         {
-            EmitSignal(SignalName.Click);
+            EmitSignal(SignalName.Click, this);
         }
     }
 

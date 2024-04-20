@@ -1,4 +1,5 @@
 using Godot;
+using PixelUno.Entities.Card;
 
 namespace PixelUno.Entities.Table;
 
@@ -16,5 +17,18 @@ public partial class Table : Node2D
         {
             CurrentPlayer.AddCard(Deck.GetNextCard());
         }
+        
+        Game.AddCard(Deck.GetNextCard());
+        
+        CurrentPlayer.SelectedCard += CurrentPlayerOnSelectedCard;
+    }
+
+    private void CurrentPlayerOnSelectedCard(Card.Card card)
+    {
+        if (!Game.CheckCard(card.Type)) 
+            return;
+        
+        Game.AddCard(card.Type);
+        CurrentPlayer.RemoveCard(card);
     }
 }
