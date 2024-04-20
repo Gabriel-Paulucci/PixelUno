@@ -1,7 +1,4 @@
-using System;
-using System.Linq;
 using Godot;
-using PixelUno.Enums;
 
 namespace PixelUno.Entities.Card;
 
@@ -40,7 +37,7 @@ public partial class Card : Node2D
 
     public override void _EnterTree()
     {
-        CardFront.Frame = (int)Type;
+        CardFront.Frame = Type.Frame;
     }
 
     public void Hover(bool exit)

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using PixelUno.Entities.Card;
 using PixelUno.Enums;
 
 namespace PixelUno.Entities.Player;
@@ -25,7 +26,7 @@ public partial class Player : Node2D
         AddChild(card);
         
         Cards.Add(card);
-        Cards.Sort((x, y) => (int)x.Type - (int)y.Type);
+        Cards.Sort((x, y) => x.Type.Frame - y.Type.Frame);
     }
 
     private void CardOnMouseEntered(int zIndex)
