@@ -57,6 +57,11 @@ public partial class Deck : Node2D
 
     public CardType GetNextCard()
     {
+        if (_cards.Count == 0)
+        {
+            Generate();
+        }
+        
         return _cards.Dequeue();
     }
 }

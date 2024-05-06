@@ -1,4 +1,6 @@
+using System;
 using Godot;
+using PixelUno.Enums;
 
 namespace PixelUno.Entities.Card;
 
@@ -37,6 +39,28 @@ public partial class Card : Node2D
 
     public override void _EnterTree()
     {
+        switch (Type.Color)
+        {
+            case CardColor.Blue:
+                CardFront.Animation = "blue";
+                break;
+            case CardColor.Yellow:
+                CardFront.Animation = "yellow";
+                break;
+            case CardColor.Red:
+                CardFront.Animation = "red";
+                break;
+            case CardColor.Green:
+                CardFront.Animation = "green";
+                break;
+            case CardColor.Wild:
+                CardFront.Animation = "wild";
+                break;
+            default:
+                CardFront.Animation = "default";
+                break;
+        }
+        
         CardFront.Frame = Type.Frame;
     }
 

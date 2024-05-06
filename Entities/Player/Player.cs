@@ -29,11 +29,16 @@ public partial class Player : Node2D
         AddChild(card);
         
         Cards.Add(card);
-        Cards.Sort((x, y) => x.Type.Frame - y.Type.Frame);
+        OrderCards();
     }
 
     private void CardOnClick(Card.Card card)
     {
+        var topCard = CardHovers.MaxBy(x => x.Index);
+        
+        if (topCard !=  card)
+            return;
+        
         EmitSignal(SignalName.SelectedCard, card);
     }
 
@@ -98,10 +103,13 @@ public partial class Player : Node2D
     public void RemoveCard(Card.Card card)
     {
         Cards.Remove(card);
-        Cards.Sort((x, y) => x.Type.Frame - y.Type.Frame);
-        card.QueueFree();
+        OrderCards();
         CardHovers.Remove(card);
-        var newHover = CardHovers.MaxBy(x => x.Index);
-        newHover?.Hover(false);
+        card.QueueFree();
+    }
+
+    private void OrderCards()
+    {
+        Cards.Sort((x, y) => x.Type.Order - y.Type.Order);
     }
 }

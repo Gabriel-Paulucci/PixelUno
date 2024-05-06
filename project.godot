@@ -14,7 +14,6 @@ config/name="PixelUno"
 run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://Icon.png"
-config/windows_native_icon="res://icon.ico"
 
 [display]
 
@@ -39,3 +38,4 @@ click={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method.mobile="gl_compatibility"
+driver/threads/thread_model=2

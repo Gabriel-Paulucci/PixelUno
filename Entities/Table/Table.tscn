@@ -10,637 +10,531 @@
 script = ExtResource("3_dkghu")
 Symbol = 0
 Color = 0
-Frame = 0
 
 [sub_resource type="Resource" id="Resource_vu2dd"]
 script = ExtResource("3_dkghu")
 Symbol = 1
 Color = 0
-Frame = 1
 
 [sub_resource type="Resource" id="Resource_1ijma"]
 script = ExtResource("3_dkghu")
 Symbol = 1
 Color = 0
-Frame = 1
 
 [sub_resource type="Resource" id="Resource_3bvct"]
 script = ExtResource("3_dkghu")
 Symbol = 2
 Color = 0
-Frame = 2
 
 [sub_resource type="Resource" id="Resource_yhp36"]
 script = ExtResource("3_dkghu")
 Symbol = 3
 Color = 0
-Frame = 3
 
 [sub_resource type="Resource" id="Resource_l404t"]
 script = ExtResource("3_dkghu")
 Symbol = 4
 Color = 0
-Frame = 4
 
 [sub_resource type="Resource" id="Resource_44x1m"]
 script = ExtResource("3_dkghu")
 Symbol = 4
 Color = 0
-Frame = 4
 
 [sub_resource type="Resource" id="Resource_vq2v3"]
 script = ExtResource("3_dkghu")
 Symbol = 5
 Color = 0
-Frame = 5
 
 [sub_resource type="Resource" id="Resource_47ef6"]
 script = ExtResource("3_dkghu")
 Symbol = 5
 Color = 0
-Frame = 5
 
 [sub_resource type="Resource" id="Resource_levnm"]
 script = ExtResource("3_dkghu")
 Symbol = 6
 Color = 0
-Frame = 6
 
 [sub_resource type="Resource" id="Resource_4i0mq"]
 script = ExtResource("3_dkghu")
 Symbol = 6
 Color = 0
-Frame = 6
 
 [sub_resource type="Resource" id="Resource_u3sb6"]
 script = ExtResource("3_dkghu")
 Symbol = 7
 Color = 0
-Frame = 7
 
 [sub_resource type="Resource" id="Resource_r7v70"]
 script = ExtResource("3_dkghu")
 Symbol = 7
 Color = 0
-Frame = 7
 
 [sub_resource type="Resource" id="Resource_lkakw"]
 script = ExtResource("3_dkghu")
 Symbol = 8
 Color = 0
-Frame = 8
 
 [sub_resource type="Resource" id="Resource_r2plo"]
 script = ExtResource("3_dkghu")
 Symbol = 8
 Color = 0
-Frame = 8
 
 [sub_resource type="Resource" id="Resource_tk4hg"]
 script = ExtResource("3_dkghu")
 Symbol = 9
 Color = 0
-Frame = 9
 
 [sub_resource type="Resource" id="Resource_v6fmh"]
 script = ExtResource("3_dkghu")
 Symbol = 9
 Color = 0
-Frame = 9
 
 [sub_resource type="Resource" id="Resource_sirpm"]
 script = ExtResource("3_dkghu")
 Symbol = 10
 Color = 0
-Frame = 10
 
 [sub_resource type="Resource" id="Resource_ljqjv"]
 script = ExtResource("3_dkghu")
 Symbol = 10
 Color = 0
-Frame = 10
 
 [sub_resource type="Resource" id="Resource_fktr5"]
 script = ExtResource("3_dkghu")
 Symbol = 11
 Color = 0
-Frame = 11
 
 [sub_resource type="Resource" id="Resource_rltm8"]
 script = ExtResource("3_dkghu")
 Symbol = 11
 Color = 0
-Frame = 11
 
 [sub_resource type="Resource" id="Resource_kmnxb"]
 script = ExtResource("3_dkghu")
 Symbol = 12
 Color = 0
-Frame = 12
 
 [sub_resource type="Resource" id="Resource_618l5"]
 script = ExtResource("3_dkghu")
 Symbol = 12
 Color = 0
-Frame = 12
 
 [sub_resource type="Resource" id="Resource_bssp2"]
 script = ExtResource("3_dkghu")
 Symbol = 0
 Color = 1
-Frame = 13
 
 [sub_resource type="Resource" id="Resource_v6mvn"]
 script = ExtResource("3_dkghu")
 Symbol = 1
 Color = 1
-Frame = 14
 
 [sub_resource type="Resource" id="Resource_gcv7y"]
 script = ExtResource("3_dkghu")
 Symbol = 1
 Color = 1
-Frame = 14
 
 [sub_resource type="Resource" id="Resource_n4lge"]
 script = ExtResource("3_dkghu")
 Symbol = 2
 Color = 1
-Frame = 15
 
 [sub_resource type="Resource" id="Resource_8s1a1"]
 script = ExtResource("3_dkghu")
 Symbol = 2
 Color = 1
-Frame = 15
 
 [sub_resource type="Resource" id="Resource_6w66e"]
 script = ExtResource("3_dkghu")
 Symbol = 3
 Color = 1
-Frame = 16
 
 [sub_resource type="Resource" id="Resource_mo401"]
 script = ExtResource("3_dkghu")
 Symbol = 3
 Color = 1
-Frame = 16
 
 [sub_resource type="Resource" id="Resource_tgfis"]
 script = ExtResource("3_dkghu")
 Symbol = 4
 Color = 1
-Frame = 17
 
 [sub_resource type="Resource" id="Resource_fk0h3"]
 script = ExtResource("3_dkghu")
 Symbol = 4
 Color = 1
-Frame = 17
 
 [sub_resource type="Resource" id="Resource_8k812"]
 script = ExtResource("3_dkghu")
 Symbol = 5
 Color = 1
-Frame = 18
 
 [sub_resource type="Resource" id="Resource_5cman"]
 script = ExtResource("3_dkghu")
 Symbol = 5
 Color = 1
-Frame = 18
 
 [sub_resource type="Resource" id="Resource_2jvel"]
 script = ExtResource("3_dkghu")
 Symbol = 6
 Color = 1
-Frame = 19
 
 [sub_resource type="Resource" id="Resource_ilk5v"]
 script = ExtResource("3_dkghu")
 Symbol = 6
 Color = 1
-Frame = 19
 
 [sub_resource type="Resource" id="Resource_m2kc7"]
 script = ExtResource("3_dkghu")
 Symbol = 7
 Color = 1
-Frame = 20
 
 [sub_resource type="Resource" id="Resource_31vrv"]
 script = ExtResource("3_dkghu")
 Symbol = 7
 Color = 1
-Frame = 20
 
 [sub_resource type="Resource" id="Resource_t82qq"]
 script = ExtResource("3_dkghu")
 Symbol = 8
 Color = 1
-Frame = 21
 
 [sub_resource type="Resource" id="Resource_atqad"]
 script = ExtResource("3_dkghu")
 Symbol = 8
 Color = 1
-Frame = 21
 
 [sub_resource type="Resource" id="Resource_l31bc"]
 script = ExtResource("3_dkghu")
 Symbol = 9
 Color = 1
-Frame = 22
 
 [sub_resource type="Resource" id="Resource_8lal2"]
 script = ExtResource("3_dkghu")
 Symbol = 9
 Color = 1
-Frame = 22
 
 [sub_resource type="Resource" id="Resource_ysf3o"]
 script = ExtResource("3_dkghu")
 Symbol = 10
 Color = 1
-Frame = 23
 
 [sub_resource type="Resource" id="Resource_rddp4"]
 script = ExtResource("3_dkghu")
 Symbol = 10
 Color = 1
-Frame = 23
 
 [sub_resource type="Resource" id="Resource_s8if1"]
 script = ExtResource("3_dkghu")
 Symbol = 11
 Color = 1
-Frame = 24
 
 [sub_resource type="Resource" id="Resource_dl4t4"]
 script = ExtResource("3_dkghu")
 Symbol = 11
 Color = 1
-Frame = 24
 
 [sub_resource type="Resource" id="Resource_43opi"]
 script = ExtResource("3_dkghu")
 Symbol = 12
 Color = 1
-Frame = 25
 
 [sub_resource type="Resource" id="Resource_2n62k"]
 script = ExtResource("3_dkghu")
 Symbol = 12
 Color = 1
-Frame = 25
 
 [sub_resource type="Resource" id="Resource_r5qyo"]
 script = ExtResource("3_dkghu")
 Symbol = 0
 Color = 2
-Frame = 26
 
 [sub_resource type="Resource" id="Resource_s6g3a"]
 script = ExtResource("3_dkghu")
 Symbol = 1
 Color = 2
-Frame = 27
 
 [sub_resource type="Resource" id="Resource_ghbp8"]
 script = ExtResource("3_dkghu")
 Symbol = 1
 Color = 2
-Frame = 27
 
 [sub_resource type="Resource" id="Resource_jlgq7"]
 script = ExtResource("3_dkghu")
 Symbol = 2
 Color = 2
-Frame = 28
 
 [sub_resource type="Resource" id="Resource_1r4ur"]
 script = ExtResource("3_dkghu")
 Symbol = 2
 Color = 2
-Frame = 28
 
 [sub_resource type="Resource" id="Resource_3x8x0"]
 script = ExtResource("3_dkghu")
 Symbol = 3
 Color = 2
-Frame = 29
 
 [sub_resource type="Resource" id="Resource_jtykh"]
 script = ExtResource("3_dkghu")
 Symbol = 3
 Color = 2
-Frame = 29
 
 [sub_resource type="Resource" id="Resource_b2kn2"]
 script = ExtResource("3_dkghu")
 Symbol = 4
 Color = 2
-Frame = 30
 
 [sub_resource type="Resource" id="Resource_b7qsi"]
 script = ExtResource("3_dkghu")
 Symbol = 4
 Color = 2
-Frame = 30
 
 [sub_resource type="Resource" id="Resource_jic1j"]
 script = ExtResource("3_dkghu")
 Symbol = 5
 Color = 2
-Frame = 31
 
 [sub_resource type="Resource" id="Resource_4l2op"]
 script = ExtResource("3_dkghu")
 Symbol = 5
 Color = 2
-Frame = 31
 
 [sub_resource type="Resource" id="Resource_tlecf"]
 script = ExtResource("3_dkghu")
 Symbol = 6
 Color = 2
-Frame = 32
 
 [sub_resource type="Resource" id="Resource_xl7ee"]
 script = ExtResource("3_dkghu")
 Symbol = 6
 Color = 2
-Frame = 32
 
 [sub_resource type="Resource" id="Resource_kdkfu"]
 script = ExtResource("3_dkghu")
 Symbol = 7
 Color = 2
-Frame = 33
 
 [sub_resource type="Resource" id="Resource_gmroh"]
 script = ExtResource("3_dkghu")
 Symbol = 7
 Color = 2
-Frame = 33
 
 [sub_resource type="Resource" id="Resource_dwqwp"]
 script = ExtResource("3_dkghu")
 Symbol = 8
 Color = 2
-Frame = 34
 
 [sub_resource type="Resource" id="Resource_72xlf"]
 script = ExtResource("3_dkghu")
 Symbol = 8
 Color = 2
-Frame = 34
 
 [sub_resource type="Resource" id="Resource_73xpp"]
 script = ExtResource("3_dkghu")
 Symbol = 9
 Color = 2
-Frame = 35
 
 [sub_resource type="Resource" id="Resource_wjdno"]
 script = ExtResource("3_dkghu")
 Symbol = 9
 Color = 2
-Frame = 35
 
 [sub_resource type="Resource" id="Resource_42cam"]
 script = ExtResource("3_dkghu")
 Symbol = 10
 Color = 2
-Frame = 36
 
 [sub_resource type="Resource" id="Resource_8ho7q"]
 script = ExtResource("3_dkghu")
 Symbol = 10
 Color = 2
-Frame = 36
 
 [sub_resource type="Resource" id="Resource_hog7j"]
 script = ExtResource("3_dkghu")
 Symbol = 11
 Color = 2
-Frame = 37
 
 [sub_resource type="Resource" id="Resource_lte24"]
 script = ExtResource("3_dkghu")
 Symbol = 11
 Color = 2
-Frame = 37
 
 [sub_resource type="Resource" id="Resource_i5w25"]
 script = ExtResource("3_dkghu")
 Symbol = 12
 Color = 2
-Frame = 38
 
 [sub_resource type="Resource" id="Resource_ufrbi"]
 script = ExtResource("3_dkghu")
 Symbol = 12
 Color = 2
-Frame = 38
 
 [sub_resource type="Resource" id="Resource_qb4x5"]
 script = ExtResource("3_dkghu")
 Symbol = 0
 Color = 3
-Frame = 39
 
 [sub_resource type="Resource" id="Resource_i5mdq"]
 script = ExtResource("3_dkghu")
 Symbol = 1
 Color = 3
-Frame = 40
 
 [sub_resource type="Resource" id="Resource_rvolr"]
 script = ExtResource("3_dkghu")
 Symbol = 1
 Color = 3
-Frame = 40
 
 [sub_resource type="Resource" id="Resource_kvn4k"]
 script = ExtResource("3_dkghu")
 Symbol = 2
 Color = 3
-Frame = 41
 
 [sub_resource type="Resource" id="Resource_auqnp"]
 script = ExtResource("3_dkghu")
 Symbol = 2
 Color = 3
-Frame = 41
 
 [sub_resource type="Resource" id="Resource_0u6ft"]
 script = ExtResource("3_dkghu")
 Symbol = 3
 Color = 3
-Frame = 42
 
 [sub_resource type="Resource" id="Resource_lidpt"]
 script = ExtResource("3_dkghu")
 Symbol = 3
 Color = 3
-Frame = 42
 
 [sub_resource type="Resource" id="Resource_8gcat"]
 script = ExtResource("3_dkghu")
 Symbol = 4
 Color = 3
-Frame = 43
 
 [sub_resource type="Resource" id="Resource_x00gy"]
 script = ExtResource("3_dkghu")
 Symbol = 4
 Color = 3
-Frame = 43
 
 [sub_resource type="Resource" id="Resource_f7a4u"]
 script = ExtResource("3_dkghu")
 Symbol = 5
 Color = 3
-Frame = 44
 
 [sub_resource type="Resource" id="Resource_0slfi"]
 script = ExtResource("3_dkghu")
 Symbol = 5
 Color = 3
-Frame = 44
 
 [sub_resource type="Resource" id="Resource_yfsx1"]
 script = ExtResource("3_dkghu")
 Symbol = 5
 Color = 3
-Frame = 45
 
 [sub_resource type="Resource" id="Resource_m2g7l"]
 script = ExtResource("3_dkghu")
 Symbol = 6
 Color = 3
-Frame = 45
 
 [sub_resource type="Resource" id="Resource_1gqu8"]
 script = ExtResource("3_dkghu")
 Symbol = 7
 Color = 3
-Frame = 46
 
 [sub_resource type="Resource" id="Resource_1pgnt"]
 script = ExtResource("3_dkghu")
 Symbol = 7
 Color = 3
-Frame = 46
 
 [sub_resource type="Resource" id="Resource_ytmqj"]
 script = ExtResource("3_dkghu")
 Symbol = 8
 Color = 3
-Frame = 47
 
 [sub_resource type="Resource" id="Resource_s2plw"]
 script = ExtResource("3_dkghu")
 Symbol = 8
 Color = 3
-Frame = 47
 
 [sub_resource type="Resource" id="Resource_1eht4"]
 script = ExtResource("3_dkghu")
 Symbol = 9
 Color = 3
-Frame = 48
 
 [sub_resource type="Resource" id="Resource_vhq4v"]
 script = ExtResource("3_dkghu")
 Symbol = 9
 Color = 3
-Frame = 48
 
 [sub_resource type="Resource" id="Resource_hjw32"]
 script = ExtResource("3_dkghu")
 Symbol = 10
 Color = 3
-Frame = 49
 
 [sub_resource type="Resource" id="Resource_w05x5"]
 script = ExtResource("3_dkghu")
 Symbol = 10
 Color = 3
-Frame = 49
 
 [sub_resource type="Resource" id="Resource_y0ymn"]
 script = ExtResource("3_dkghu")
 Symbol = 11
 Color = 3
-Frame = 50
 
 [sub_resource type="Resource" id="Resource_khyoo"]
 script = ExtResource("3_dkghu")
 Symbol = 11
 Color = 3
-Frame = 50
 
 [sub_resource type="Resource" id="Resource_q2twf"]
 script = ExtResource("3_dkghu")
 Symbol = 12
 Color = 3
-Frame = 51
 
 [sub_resource type="Resource" id="Resource_cxp00"]
 script = ExtResource("3_dkghu")
 Symbol = 12
 Color = 3
-Frame = 51
 
 [sub_resource type="Resource" id="Resource_3el3d"]
 script = ExtResource("3_dkghu")
 Symbol = 13
 Color = 4
-Frame = 52
 
 [sub_resource type="Resource" id="Resource_te8jf"]
 script = ExtResource("3_dkghu")
 Symbol = 13
 Color = 4
-Frame = 52
 
 [sub_resource type="Resource" id="Resource_fuq2f"]
 script = ExtResource("3_dkghu")
 Symbol = 12
 Color = 4
-Frame = 52
 
 [sub_resource type="Resource" id="Resource_3c2bo"]
 script = ExtResource("3_dkghu")
 Symbol = 13
 Color = 4
-Frame = 52
 
 [sub_resource type="Resource" id="Resource_28ycl"]
 script = ExtResource("3_dkghu")
 Symbol = 14
 Color = 4
-Frame = 53
 
 [sub_resource type="Resource" id="Resource_daw4j"]
 script = ExtResource("3_dkghu")
 Symbol = 14
 Color = 4
-Frame = 53
 
 [sub_resource type="Resource" id="Resource_awiho"]
 script = ExtResource("3_dkghu")
 Symbol = 14
 Color = 4
-Frame = 53
 
 [sub_resource type="Resource" id="Resource_esd44"]
 script = ExtResource("3_dkghu")
 Symbol = 14
 Color = 4
-Frame = 53
 
 [node name="Table" type="Node2D" node_paths=PackedStringArray("Deck", "CurrentPlayer", "Game")]
 script = ExtResource("1_cc2gw")
