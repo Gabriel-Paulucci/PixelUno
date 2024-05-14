@@ -9,7 +9,7 @@ public partial class Table : Node2D
     [Export] public required Player.Player CurrentPlayer { get; set; }
     [Export] public required Game.Game Game { get; set; }
     [Export] public required Timer Timer { get; set; }
-    
+
     [Export] public required int MaxPlayerDelay { get; set; }
 
     public override void _Ready()
@@ -25,7 +25,7 @@ public partial class Table : Node2D
             CurrentPlayer.AddCard(Deck.GetNextCard());
         }
 
-        Game.AddFirstCard(Deck.GetNextCard());
+        Game.AddCard(Deck.GetNextCard());
         ResetTimer();
     }
 
@@ -36,6 +36,17 @@ public partial class Table : Node2D
 
     private void DeckOnBuyCard()
     {
+        if (Game.CardsToBuy > 0)
+        {
+            for (var i = 0; i < Game.CardsToBuy; i++)
+            {
+                CurrentPlayer.AddCard(Deck.GetNextCard());
+            }
+
+            Game.ClearCardsToBuy();
+            return;
+        }
+
         CurrentPlayer.AddCard(Deck.GetNextCard());
         ResetTimer();
     }
