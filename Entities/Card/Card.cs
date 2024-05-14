@@ -13,13 +13,13 @@ public partial class Card : Node2D
     [Export] public int Index { get; set; } = -1;
     
     [Signal]
-    public delegate void ClickEventHandler(Card type);
+    public delegate void ClickEventHandler(Card card);
 
     [Signal]
-    public delegate void MouseEnteredEventHandler(Card zIndex);
+    public delegate void MouseEnteredEventHandler(Card card);
 
     [Signal]
-    public delegate void MouseExitedEventHandler(Card zIndex);
+    public delegate void MouseExitedEventHandler(Card card);
     
     private bool _hovered;
 
@@ -39,29 +39,7 @@ public partial class Card : Node2D
 
     public override void _EnterTree()
     {
-        switch (Type.Color)
-        {
-            case CardColor.Blue:
-                CardFront.Animation = "blue";
-                break;
-            case CardColor.Yellow:
-                CardFront.Animation = "yellow";
-                break;
-            case CardColor.Red:
-                CardFront.Animation = "red";
-                break;
-            case CardColor.Green:
-                CardFront.Animation = "green";
-                break;
-            case CardColor.Wild:
-                CardFront.Animation = "wild";
-                break;
-            default:
-                CardFront.Animation = "default";
-                break;
-        }
-        
-        CardFront.Frame = Type.Frame;
+        UpdateSprite();
     }
 
     public void Hover(bool exit)
@@ -87,5 +65,20 @@ public partial class Card : Node2D
             return;
         
         ZIndex = Index;
+    }
+
+    public void UpdateSprite()
+    {
+        CardFront.Animation = Type.Color switch
+        {
+            CardColor.Blue => "blue",
+            CardColor.Yellow => "yellow",
+            CardColor.Red => "red",
+            CardColor.Green => "green",
+            CardColor.Wild => "wild",
+            _ => "default"
+        };
+
+        CardFront.Frame = Type.Frame;
     }
 }
