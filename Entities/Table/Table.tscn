@@ -543,6 +543,7 @@ CurrentPlayer = NodePath("CurrentPlayer")
 Game = NodePath("Game")
 Timer = NodePath("Timer")
 MaxPlayerDelay = 30
+StartPlayerCards = 7
 
 [node name="Deck" parent="." instance=ExtResource("2_vavmh")]
 position = Vector2(248, -25)

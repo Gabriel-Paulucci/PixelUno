@@ -9,8 +9,8 @@ public partial class Table : Node2D
     [Export] public required Player.Player CurrentPlayer { get; set; }
     [Export] public required Game.Game Game { get; set; }
     [Export] public required Timer Timer { get; set; }
-
     [Export] public required int MaxPlayerDelay { get; set; }
+    [Export] public required int StartPlayerCards { get; set; }
 
     public override void _Ready()
     {
@@ -20,7 +20,7 @@ public partial class Table : Node2D
 
         Deck.Generate();
 
-        for (var i = 0; i < 20; i++)
+        for (var i = 0; i < StartPlayerCards; i++)
         {
             CurrentPlayer.AddCard(Deck.GetNextCard());
         }

@@ -39,3 +39,4 @@ click={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method.mobile="gl_compatibility"
 driver/threads/thread_model=2
+environment/defaults/default_clear_color=Color(0.396078, 0.294118, 0.152941, 1)
