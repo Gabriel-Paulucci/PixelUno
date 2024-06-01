@@ -1,0 +1,110 @@
+[gd_scene load_steps=3 format=3 uid="uid://441i1jciwght"]
+
+[ext_resource type="Script" path="res://Gui/Menu.cs" id="1_uhjvg"]
+[ext_resource type="Texture2D" uid="uid://duj14nhw6dm3t" path="res://Logo.png" id="1_vrgla"]
+
+[node name="Menu" type="Control" node_paths=PackedStringArray("LoginPhase", "Host", "PlayerName", "Login", "TablePhase", "TableId", "JoinTable", "CreateTable")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uhjvg")
+LoginPhase = NodePath("MarginContainer/Panel/VBoxContainer/LoginPhase")
+Host = NodePath("MarginContainer/Panel/VBoxContainer/LoginPhase/GridContainer/Host")
+PlayerName = NodePath("MarginContainer/Panel/VBoxContainer/LoginPhase/GridContainer/PlayerName")
+Login = NodePath("MarginContainer/Panel/VBoxContainer/LoginPhase/Login")
+TablePhase = NodePath("MarginContainer/Panel/VBoxContainer/TablePhase")
+TableId = NodePath("MarginContainer/Panel/VBoxContainer/TablePhase/GridContainer/TableId")
+JoinTable = NodePath("MarginContainer/Panel/VBoxContainer/TablePhase/JoinTable")
+CreateTable = NodePath("MarginContainer/Panel/VBoxContainer/TablePhase/CreateTable")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.5
+offset_right = 187.5
+offset_bottom = 353.0
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_vrgla")
+stretch_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="LoginPhase" type="VBoxContainer" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/Panel/VBoxContainer/LoginPhase"]
+layout_mode = 2
+columns = 2
+
+[node name="HostLabel" type="Label" parent="MarginContainer/Panel/VBoxContainer/LoginPhase/GridContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="Host" type="LineEdit" parent="MarginContainer/Panel/VBoxContainer/LoginPhase/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "https://pixeluno.fardragi.com"
+
+[node name="NameLabel" type="Label" parent="MarginContainer/Panel/VBoxContainer/LoginPhase/GridContainer"]
+layout_mode = 2
+text = "Nome"
+
+[node name="PlayerName" type="LineEdit" parent="MarginContainer/Panel/VBoxContainer/LoginPhase/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Convidado"
+
+[node name="Login" type="Button" parent="MarginContainer/Panel/VBoxContainer/LoginPhase"]
+layout_mode = 2
+text = "Logar"
+
+[node name="TablePhase" type="VBoxContainer" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/Panel/VBoxContainer/TablePhase"]
+layout_mode = 2
+columns = 2
+
+[node name="IdLabel" type="Label" parent="MarginContainer/Panel/VBoxContainer/TablePhase/GridContainer"]
+layout_mode = 2
+text = "Id"
+
+[node name="TableId" type="LineEdit" parent="MarginContainer/Panel/VBoxContainer/TablePhase/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="JoinTable" type="Button" parent="MarginContainer/Panel/VBoxContainer/TablePhase"]
+layout_mode = 2
+text = "Entar"
+
+[node name="CreateTable" type="Button" parent="MarginContainer/Panel/VBoxContainer/TablePhase"]
+layout_mode = 2
+text = "Criar Mesa"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2

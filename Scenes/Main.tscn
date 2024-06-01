@@ -1,9 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://6harbl4vol2q"]
+[gd_scene load_steps=5 format=3 uid="uid://6harbl4vol2q"]
 
+[ext_resource type="Script" path="res://Scenes/Main.cs" id="1_emwxm"]
 [ext_resource type="PackedScene" uid="uid://be435qdm334jy" path="res://Entities/Table/Table.tscn" id="2_ln4ma"]
+[ext_resource type="PackedScene" uid="uid://441i1jciwght" path="res://Gui/Menu.tscn" id="3_6guam"]
+[ext_resource type="Script" path="res://Adapters/SignalRAdapter.cs" id="4_eoljv"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_emwxm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Table" parent="." instance=ExtResource("2_ln4ma")]
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menu" parent="CanvasLayer" instance=ExtResource("3_6guam")]
+
+[node name="SignalR" type="Node" parent="."]
+script = ExtResource("4_eoljv")

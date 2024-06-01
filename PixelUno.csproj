@@ -10,4 +10,7 @@
   <ItemGroup>
     <Folder Include="Scenes\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.6" />
+  </ItemGroup>
 </Project>

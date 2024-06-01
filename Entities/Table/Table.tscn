@@ -536,12 +536,11 @@ script = ExtResource("3_dkghu")
 Symbol = 14
 Color = 4
 
-[node name="Table" type="Node2D" node_paths=PackedStringArray("Deck", "CurrentPlayer", "Game", "Timer")]
+[node name="Table" type="Node2D" node_paths=PackedStringArray("Deck", "CurrentPlayer", "Game")]
 script = ExtResource("1_cc2gw")
 Deck = NodePath("Deck")
 CurrentPlayer = NodePath("CurrentPlayer")
 Game = NodePath("Game")
-Timer = NodePath("Timer")
 MaxPlayerDelay = 30
 StartPlayerCards = 7
 
@@ -553,5 +552,3 @@ Cards = Array[Resource]([SubResource("Resource_3g775"), SubResource("Resource_vu
 
 [node name="CurrentPlayer" parent="." instance=ExtResource("4_pqsbt")]
 position = Vector2(0, 250)
-
-[node name="Timer" type="Timer" parent="."]
