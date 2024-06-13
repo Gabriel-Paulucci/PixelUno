@@ -5,13 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://441i1jciwght" path="res://Gui/Menu.tscn" id="3_6guam"]
 [ext_resource type="Script" path="res://Adapters/SignalRAdapter.cs" id="4_eoljv"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("Menu")]
 script = ExtResource("1_emwxm")
+TableScene = ExtResource("2_ln4ma")
+Menu = NodePath("CanvasLayer/Menu")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Table" parent="." instance=ExtResource("2_ln4ma")]
-visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

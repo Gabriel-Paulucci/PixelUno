@@ -1,4 +1,3 @@
-using System;
 using Godot;
 using PixelUno.Adapters;
 
@@ -14,18 +13,30 @@ public partial class Menu : Control
     [Export] public required LineEdit TableId { get; set; }
     [Export] public required Button JoinTable { get; set; }
     [Export] public required Button CreateTable { get; set; }
+    [Export] public required VBoxContainer Players { get; set; }
+    [Export] public required Button Playing { get; set; }
 
     private SignalRAdapter? _signalR;
+
+    [Signal]
+    public delegate void EnterInGameEventHandler();
 
     public override void _Ready()
     {
         _signalR = GetNode<SignalRAdapter>("/root/SignalRAdapter");
 
         TablePhase.Hide();
+        Playing.Hide();
         
         Login.Pressed += LoginOnPressed;
         JoinTable.Pressed += JoinTableOnPressed;
         CreateTable.Pressed += CreateTableOnPressed;
+        Playing.Pressed += PlayingOnPressed;
+    }
+
+    private void PlayingOnPressed()
+    {
+        EmitSignal(SignalName.EnterInGame);
     }
 
     private async void CreateTableOnPressed()
@@ -34,9 +45,10 @@ public partial class Menu : Control
         TableId.Text = tableId;
     }
 
-    private void JoinTableOnPressed()
+    private async void JoinTableOnPressed()
     {
-        throw new NotImplementedException();
+        await _signalR?.JoinTable(TableId.Text)!;
+        Playing.Show();
     }
 
     private async void LoginOnPressed()

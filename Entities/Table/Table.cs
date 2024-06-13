@@ -1,7 +1,9 @@
-using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
 using Godot;
 using PixelUno.Adapters;
-using PixelUno.Gui;
+using PixelUno.Entities.Card;
+using PixelUno.ViewModels;
 
 namespace PixelUno.Entities.Table;
 
@@ -12,24 +14,45 @@ public partial class Table : Node2D
     [Export] public required Game.Game Game { get; set; }
     [Export] public required int MaxPlayerDelay { get; set; }
     [Export] public required int StartPlayerCards { get; set; }
+    [Export] public required Button Start { get; set; }
 
     private SignalRAdapter? _signalR;
+    private List<PlayerViewModel> _otherPlayers = [];
 
     public override void _Ready()
     {
         _signalR = GetNode<SignalRAdapter>("/root/SignalRAdapter");
+        _signalR.JoinPlayer += SignalROnJoinPlayer;
+        _signalR.Start += SignalROnStart;
+        _signalR.AddCard += SignalROnAddCard;
         
         Deck.BuyCard += DeckOnBuyCard;
         CurrentPlayer.SelectedCard += CurrentPlayerOnSelectedCard;
-        
-        // Deck.Generate();
-        //
-        // for (var i = 0; i < StartPlayerCards; i++)
-        // {
-        //     CurrentPlayer.AddCard(Deck.GetNextCard());
-        // }
-        //
-        // Game.AddCard(Deck.GetNextCard());
+        Start.Pressed += StartOnPressed;
+    }
+
+    private void SignalROnAddCard(CardViewModel card)
+    {
+        CurrentPlayer.AddCard(new CardType()
+        {
+            Color = card.Color,
+            Symbol = card.Symbol
+        });
+    }
+
+    private void SignalROnStart()
+    {
+        Start.Hide();
+    }
+
+    private async void StartOnPressed()
+    {
+        await _signalR!.StartGame();
+    }
+
+    private void SignalROnJoinPlayer(PlayerViewModel player)
+    {
+        _otherPlayers.Add(player);
     }
 
     private void DeckOnBuyCard()
