@@ -55,20 +55,9 @@ public partial class Table : Node2D
         _otherPlayers.Add(player);
     }
 
-    private void DeckOnBuyCard()
+    private async void DeckOnBuyCard()
     {
-        if (Game.CardsToBuy > 0)
-        {
-            for (var i = 0; i < Game.CardsToBuy; i++)
-            {
-                CurrentPlayer.AddCard(Deck.GetNextCard());
-            }
-
-            Game.ClearCardsToBuy();
-            return;
-        }
-
-        CurrentPlayer.AddCard(Deck.GetNextCard());
+        await _signalR!.BuyCard();
     }
 
     private void CurrentPlayerOnSelectedCard(Card.Card card)

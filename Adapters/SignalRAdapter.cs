@@ -77,4 +77,9 @@ public partial class SignalRAdapter : Node
 	{
 		await _connection!.SendAsync("StartGame");
 	}
+
+	public async Task BuyCard()
+	{
+		await _connection!.SendAsync("BuyCard");
+	}
 }
