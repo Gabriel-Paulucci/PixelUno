@@ -100,9 +100,11 @@ public partial class SignalRAdapter : Node
 
     public async Task PlayingCard(CardViewModel card)
     {
-        GD.Print(_connection is null);
-        GD.Print("foda3", card.Color);
-        GD.Print("foda3", card.Symbol);
         await _connection!.SendAsync("PlayingCard", card);
+    }
+
+    public async Task<bool> CanPlay()
+    {
+        return await _connection!.InvokeAsync<bool>("CanPlay");
     }
 }

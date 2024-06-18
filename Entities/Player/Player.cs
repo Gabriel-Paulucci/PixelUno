@@ -29,15 +29,11 @@ public partial class Player : Node2D
 
     private async void CardColorSelectOnSelectColor(Card.Card card)
     {
-        GD.Print("foda1", card.Type.Color);
-        GD.Print("foda1", card.Type.Symbol);
         await PlatingCard(card);
     }
 
     private async Task PlatingCard(Card.Card card)
     {
-        GD.Print("foda2", card.Type.Color);
-        GD.Print("foda2", card.Type.Symbol);
         await _signalR!.PlayingCard(new CardViewModel()
         {
             Color = card.Type.Color,
@@ -45,6 +41,7 @@ public partial class Player : Node2D
         });
 
         RemoveCard(card);
+        OrderCards();
     }
 
     public void AddCard(CardType newCard)
@@ -69,6 +66,9 @@ public partial class Player : Node2D
         if (topCard != card)
             return;
 
+        if (!await _signalR!.CanPlay())
+            return;
+        
         if (!await _signalR!.CheckCard(new CardViewModel()
             {
                 Color = card.Type.Color,
