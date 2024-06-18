@@ -1,7 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Godot;
+using PixelUno.Adapters;
 using PixelUno.Entities.Card;
+using PixelUno.Enums;
+using PixelUno.Gui;
+using PixelUno.ViewModels;
 
 namespace PixelUno.Entities.Player;
 
@@ -10,12 +15,37 @@ public partial class Player : Node2D
     [Export] public required bool Self { get; set; }
     [Export] public required string UserName { get; set; }
     [Export] public required PackedScene CardScene { get; set; }
+    [Export] public required CardColorSelect CardColorSelect { get; set; }
 
     private List<Card.Card> Cards { get; set; } = [];
     private HashSet<Card.Card> CardHovers { get; set; } = [];
-    
-    [Signal]
-    public delegate void SelectedCardEventHandler(Card.Card card);
+    private SignalRAdapter? _signalR;
+
+    public override void _Ready()
+    {
+        _signalR = GetNode<SignalRAdapter>("/root/SignalRAdapter");
+        CardColorSelect.SelectColor += CardColorSelectOnSelectColor;
+    }
+
+    private async void CardColorSelectOnSelectColor(Card.Card card)
+    {
+        GD.Print("foda1", card.Type.Color);
+        GD.Print("foda1", card.Type.Symbol);
+        await PlatingCard(card);
+    }
+
+    private async Task PlatingCard(Card.Card card)
+    {
+        GD.Print("foda2", card.Type.Color);
+        GD.Print("foda2", card.Type.Symbol);
+        await _signalR!.PlayingCard(new CardViewModel()
+        {
+            Color = card.Type.Color,
+            Symbol = card.Type.Symbol
+        });
+
+        RemoveCard(card);
+    }
 
     public void AddCard(CardType newCard)
     {
@@ -27,19 +57,32 @@ public partial class Player : Node2D
         card.MouseExited += CardOnMouseExited;
 
         AddChild(card);
-        
+
         Cards.Add(card);
         OrderCards();
     }
 
-    private void CardOnClick(Card.Card card)
+    private async void CardOnClick(Card.Card card)
     {
         var topCard = CardHovers.MaxBy(x => x.Index);
-        
-        if (topCard !=  card)
+
+        if (topCard != card)
             return;
-        
-        EmitSignal(SignalName.SelectedCard, card);
+
+        if (!await _signalR!.CheckCard(new CardViewModel()
+            {
+                Color = card.Type.Color,
+                Symbol = card.Type.Symbol
+            }))
+            return;
+
+        if (card.Type.Color == CardColor.Wild)
+        {
+            CardColorSelect.Color(card);
+            return;
+        }
+
+        await PlatingCard(card);
     }
 
     private void CardOnMouseEntered(Card.Card card)
@@ -52,15 +95,15 @@ public partial class Player : Node2D
             CardHovers.Add(card);
             return;
         }
-        
+
         if (topCard == card)
             return;
 
         CardHovers.Add(card);
 
-        if (topCard.Index >= card.Index) 
+        if (topCard.Index >= card.Index)
             return;
-        
+
         topCard.Hover(true);
         card.Hover(false);
     }
@@ -77,7 +120,7 @@ public partial class Player : Node2D
             CardHovers.Remove(card);
             return;
         }
-        
+
         topCard.Hover(true);
         CardHovers.Remove(card);
 
@@ -100,7 +143,7 @@ public partial class Player : Node2D
         }
     }
 
-    public void RemoveCard(Card.Card card)
+    private void RemoveCard(Card.Card card)
     {
         Cards.Remove(card);
         OrderCards();

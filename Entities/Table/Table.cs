@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Godot;
 using PixelUno.Adapters;
 using PixelUno.Entities.Card;
+using PixelUno.Signals;
 using PixelUno.ViewModels;
 
 namespace PixelUno.Entities.Table;
@@ -25,13 +26,22 @@ public partial class Table : Node2D
         _signalR.JoinPlayer += SignalROnJoinPlayer;
         _signalR.Start += SignalROnStart;
         _signalR.AddCard += SignalROnAddCard;
+        _signalR.PlayCard += SignalROnPlayCard;
         
         Deck.BuyCard += DeckOnBuyCard;
-        CurrentPlayer.SelectedCard += CurrentPlayerOnSelectedCard;
         Start.Pressed += StartOnPressed;
     }
 
-    private void SignalROnAddCard(CardViewModel card)
+    private void SignalROnPlayCard(CardSignal card)
+    {
+        Game.AddCard(new CardType()
+        {
+            Color = card.Color,
+            Symbol = card.Symbol
+        });
+    }
+
+    private void SignalROnAddCard(CardSignal card)
     {
         CurrentPlayer.AddCard(new CardType()
         {
@@ -58,14 +68,5 @@ public partial class Table : Node2D
     private async void DeckOnBuyCard()
     {
         await _signalR!.BuyCard();
-    }
-
-    private void CurrentPlayerOnSelectedCard(Card.Card card)
-    {
-        if (!Game.CheckCard(card.Type))
-            return;
-
-        Game.AddCard(card.Type);
-        CurrentPlayer.RemoveCard(card);
     }
 }

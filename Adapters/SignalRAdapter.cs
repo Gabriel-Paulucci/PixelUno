@@ -3,83 +3,106 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 using Microsoft.AspNetCore.SignalR.Client;
+using PixelUno.Signals;
 using PixelUno.ViewModels;
 
 namespace PixelUno.Adapters;
 
 public partial class SignalRAdapter : Node
 {
-	private HubConnection? _connection;
+    private HubConnection? _connection;
 
-	[Signal]
-	public delegate void JoinPlayerEventHandler(PlayerViewModel player);
+    [Signal]
+    public delegate void JoinPlayerEventHandler(PlayerViewModel player);
 
-	[Signal]
-	public delegate void StartEventHandler();
+    [Signal]
+    public delegate void StartEventHandler();
 
-	[Signal]
-	public delegate void AddCardEventHandler(CardViewModel card);
-	
-	public async Task Connect(string url)
-	{
-		var uri = new Uri(url);
-		var hubUrl = $"{uri.Scheme}://{uri.Authority}/hubs/game";
-		
-		_connection = new HubConnectionBuilder()
-			.WithUrl(hubUrl)
-			.WithAutomaticReconnect()
-			.Build();
+    [Signal]
+    public delegate void AddCardEventHandler(CardSignal card);
 
-		_connection.On<PlayerViewModel>("JoinPlayer", OnJoinPlayer);
-		_connection.On("Start", OnStart);
-		_connection.On<CardViewModel>("AddCard", OnAddCard);
-		
-		await _connection.StartAsync();
-	}
+    [Signal]
+    public delegate void PlayCardEventHandler(CardSignal card);
 
-	private void OnAddCard(CardViewModel card)
-	{
-		CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.AddCard, card);
-	}
+    public async Task Connect(string url)
+    {
+        var uri = new Uri(url);
+        var hubUrl = $"{uri.Scheme}://{uri.Authority}/hubs/game";
 
-	private void OnStart()
-	{
-		CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.Start);
-	}
+        _connection = new HubConnectionBuilder()
+            .WithUrl(hubUrl)
+            .WithAutomaticReconnect()
+            .Build();
 
-	private void OnJoinPlayer(PlayerViewModel player)
-	{
-		CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.JoinPlayer, player);
-	}
-	
-	public async Task<PlayerViewModel> SetPlayerName(string name)
-	{
-		return await _connection!.InvokeAsync<PlayerViewModel>("SetPlayerName", name);
-	}
+        _connection.On<PlayerViewModel>("JoinPlayer", OnJoinPlayer);
+        _connection.On("Start", OnStart);
+        _connection.On<CardViewModel>("AddCard", OnAddCard);
+        _connection.On<CardViewModel>("PlayCard", OnPlayCard);
 
-	public async Task<string> CreateTable()
-	{
-		var tableId = await _connection!.InvokeAsync<string>("CreateTable");
-		return tableId;
-	}
+        await _connection.StartAsync();
+    }
 
-	public async Task JoinTable(string tableId)
-	{
-		var players = await _connection!.InvokeAsync<IEnumerable<PlayerViewModel>>("JoinTable", tableId);
+    private void OnPlayCard(CardViewModel card)
+    {
+        CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.PlayCard, (CardSignal)card);
+    }
 
-		foreach (var player in players)
-		{
-			CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.JoinPlayer, player);
-		}
-	}
+    private void OnAddCard(CardViewModel card)
+    {
+        CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.AddCard, (CardSignal)card);
+    }
 
-	public async Task StartGame()
-	{
-		await _connection!.SendAsync("StartGame");
-	}
+    private void OnStart()
+    {
+        CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.Start);
+    }
 
-	public async Task BuyCard()
-	{
-		await _connection!.SendAsync("BuyCard");
-	}
+    private void OnJoinPlayer(PlayerViewModel player)
+    {
+        CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.JoinPlayer, player);
+    }
+
+    public async Task<PlayerViewModel> SetPlayerName(string name)
+    {
+        return await _connection!.InvokeAsync<PlayerViewModel>("SetPlayerName", name);
+    }
+
+    public async Task<string> CreateTable()
+    {
+        var tableId = await _connection!.InvokeAsync<string>("CreateTable");
+        return tableId;
+    }
+
+    public async Task JoinTable(string tableId)
+    {
+        var players = await _connection!.InvokeAsync<IEnumerable<PlayerViewModel>>("JoinTable", tableId);
+
+        foreach (var player in players)
+        {
+            CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.JoinPlayer, player);
+        }
+    }
+
+    public async Task StartGame()
+    {
+        await _connection!.SendAsync("StartGame");
+    }
+
+    public async Task BuyCard()
+    {
+        await _connection!.SendAsync("BuyCard");
+    }
+
+    public async Task<bool> CheckCard(CardViewModel card)
+    {
+        return await _connection!.InvokeAsync<bool>("CheckCard", card);
+    }
+
+    public async Task PlayingCard(CardViewModel card)
+    {
+        GD.Print(_connection is null);
+        GD.Print("foda3", card.Color);
+        GD.Print("foda3", card.Symbol);
+        await _connection!.SendAsync("PlayingCard", card);
+    }
 }

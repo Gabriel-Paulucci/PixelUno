@@ -1,8 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://itmyvi0odkd8"]
+[gd_scene load_steps=4 format=3 uid="uid://itmyvi0odkd8"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.cs" id="1_1xh71"]
 [ext_resource type="PackedScene" uid="uid://chouje6bh08ni" path="res://Entities/Card/Card.tscn" id="2_grby6"]
+[ext_resource type="PackedScene" uid="uid://dslxe6842j036" path="res://Gui/CardColorSelect.tscn" id="3_kbjlv"]
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("CardColorSelect")]
 script = ExtResource("1_1xh71")
 CardScene = ExtResource("2_grby6")
+CardColorSelect = NodePath("CanvasLayer/CardColorSelect")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CardColorSelect" parent="CanvasLayer" instance=ExtResource("3_kbjlv")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

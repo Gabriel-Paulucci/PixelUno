@@ -1,4 +1,5 @@
 using Godot;
+using PixelUno.Entities.Card;
 using PixelUno.Enums;
 
 namespace PixelUno.Gui;
@@ -11,7 +12,9 @@ public partial class CardColorSelect : Panel
     [Export] public required BaseButton GreenButton { get; set; }
 
     [Signal]
-    public delegate void SelectColorEventHandler(CardColor color);
+    public delegate void SelectColorEventHandler(Card card);
+
+    private Card? _card;
 
     public override void _Ready()
     {
@@ -23,6 +26,15 @@ public partial class CardColorSelect : Panel
 
     private void ButtonOnPressed(CardColor color)
     {
-        EmitSignal(SignalName.SelectColor, (int)color);
+        _card!.Type.Color = color;
+        _card.UpdateSprite();
+        EmitSignal(SignalName.SelectColor, _card);
+        Hide();
+    }
+
+    public void Color(Card card)
+    {
+        Show();
+        _card = card;
     }
 }
