@@ -1,10 +1,11 @@
-[gd_scene load_steps=112 format=3 uid="uid://be435qdm334jy"]
+[gd_scene load_steps=113 format=3 uid="uid://be435qdm334jy"]
 
 [ext_resource type="Script" path="res://Entities/Table/Table.cs" id="1_cc2gw"]
 [ext_resource type="PackedScene" uid="uid://ccps1ag01y12d" path="res://Entities/Deck/Deck.tscn" id="2_vavmh"]
 [ext_resource type="PackedScene" uid="uid://vhml6a3r0sob" path="res://Entities/Game/Game.tscn" id="3_3xmjd"]
 [ext_resource type="Script" path="res://Entities/Card/CardType.cs" id="3_dkghu"]
 [ext_resource type="PackedScene" uid="uid://itmyvi0odkd8" path="res://Entities/Player/Player.tscn" id="4_pqsbt"]
+[ext_resource type="PackedScene" uid="uid://dxiewfweo2nuu" path="res://Entities/PlayerInfo/PlayersInfo.tscn" id="6_e7ve6"]
 
 [sub_resource type="Resource" id="Resource_3g775"]
 script = ExtResource("3_dkghu")
@@ -536,14 +537,15 @@ script = ExtResource("3_dkghu")
 Symbol = 14
 Color = 4
 
-[node name="Table" type="Node2D" node_paths=PackedStringArray("Deck", "CurrentPlayer", "Game", "Start")]
+[node name="Table" type="Node2D" node_paths=PackedStringArray("Deck", "CurrentPlayer", "Game", "Start", "PlayersInfo")]
 script = ExtResource("1_cc2gw")
 Deck = NodePath("Deck")
 CurrentPlayer = NodePath("CurrentPlayer")
 Game = NodePath("Game")
 MaxPlayerDelay = 30
 StartPlayerCards = 7
-Start = NodePath("CanvasLayer/MarginContainer/Start")
+Start = NodePath("CanvasLayer/Start/Start")
+PlayersInfo = NodePath("CanvasLayer/PlayersInfo")
 
 [node name="Deck" parent="." instance=ExtResource("2_vavmh")]
 position = Vector2(248, -25)
@@ -556,7 +558,7 @@ position = Vector2(0, 250)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="Start" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -571,6 +573,8 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Start" type="Button" parent="CanvasLayer/MarginContainer"]
+[node name="Start" type="Button" parent="CanvasLayer/Start"]
 layout_mode = 2
 text = "Iniciar"
+
+[node name="PlayersInfo" parent="CanvasLayer" instance=ExtResource("6_e7ve6")]

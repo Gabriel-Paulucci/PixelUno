@@ -13,7 +13,7 @@ public partial class SignalRAdapter : Node
     private HubConnection? _connection;
 
     [Signal]
-    public delegate void JoinPlayerEventHandler(PlayerViewModel player);
+    public delegate void JoinPlayerEventHandler(PlayerSignal player);
 
     [Signal]
     public delegate void StartEventHandler();
@@ -59,7 +59,7 @@ public partial class SignalRAdapter : Node
 
     private void OnJoinPlayer(PlayerViewModel player)
     {
-        CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.JoinPlayer, player);
+        CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.JoinPlayer, (PlayerSignal)player);
     }
 
     public async Task<PlayerViewModel> SetPlayerName(string name)
@@ -75,12 +75,7 @@ public partial class SignalRAdapter : Node
 
     public async Task JoinTable(string tableId)
     {
-        var players = await _connection!.InvokeAsync<IEnumerable<PlayerViewModel>>("JoinTable", tableId);
-
-        foreach (var player in players)
-        {
-            CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.JoinPlayer, player);
-        }
+        await _connection!.SendAsync("JoinTable", tableId);
     }
 
     public async Task StartGame()
@@ -106,5 +101,10 @@ public partial class SignalRAdapter : Node
     public async Task<bool> CanPlay()
     {
         return await _connection!.InvokeAsync<bool>("CanPlay");
+    }
+
+    public async Task<IEnumerable<PlayerViewModel>> GetPlayers()
+    {
+        return await _connection!.InvokeAsync<IEnumerable<PlayerViewModel>>("GetPlayers");
     }
 }

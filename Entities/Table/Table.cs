@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Godot;
 using PixelUno.Adapters;
 using PixelUno.Entities.Card;
+using PixelUno.Entities.PlayerInfo;
 using PixelUno.Signals;
 using PixelUno.ViewModels;
 
@@ -16,11 +18,11 @@ public partial class Table : Node2D
     [Export] public required int MaxPlayerDelay { get; set; }
     [Export] public required int StartPlayerCards { get; set; }
     [Export] public required Button Start { get; set; }
+    [Export] public required PlayersInfo PlayersInfo { get; set; }
 
     private SignalRAdapter? _signalR;
-    private List<PlayerViewModel> _otherPlayers = [];
 
-    public override void _Ready()
+    public override async void _Ready()
     {
         _signalR = GetNode<SignalRAdapter>("/root/SignalRAdapter");
         _signalR.JoinPlayer += SignalROnJoinPlayer;
@@ -30,8 +32,20 @@ public partial class Table : Node2D
         
         Deck.BuyCard += DeckOnBuyCard;
         Start.Pressed += StartOnPressed;
+        
+        await LoadPlayers();
     }
 
+    private async Task LoadPlayers()
+    {
+        var players = await _signalR!.GetPlayers();
+
+        foreach (var player in players)
+        {
+            PlayersInfo.AddPlayer(player);
+        }
+    }
+    
     private void SignalROnPlayCard(CardSignal card)
     {
         Game.AddCard(new CardType()
@@ -60,9 +74,9 @@ public partial class Table : Node2D
         await _signalR!.StartGame();
     }
 
-    private void SignalROnJoinPlayer(PlayerViewModel player)
+    private void SignalROnJoinPlayer(PlayerSignal player)
     {
-        _otherPlayers.Add(player);
+        PlayersInfo.AddPlayer(player);
     }
 
     private async void DeckOnBuyCard()

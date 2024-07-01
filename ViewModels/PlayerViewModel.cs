@@ -2,7 +2,7 @@
 
 namespace PixelUno.ViewModels;
 
-public partial class PlayerViewModel : GodotObject
+public class PlayerViewModel
 {
     public required string Id { get; set; }
     public required string Name { get; set; }
