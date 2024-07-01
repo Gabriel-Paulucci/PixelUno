@@ -65,9 +65,6 @@ public partial class Player : Node2D
 
         if (topCard != card)
             return;
-
-        if (!await _signalR!.CanPlay())
-            return;
         
         if (!await _signalR!.CheckCard(new CardViewModel()
             {

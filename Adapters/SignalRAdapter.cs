@@ -98,11 +98,6 @@ public partial class SignalRAdapter : Node
         await _connection!.SendAsync("PlayingCard", card);
     }
 
-    public async Task<bool> CanPlay()
-    {
-        return await _connection!.InvokeAsync<bool>("CanPlay");
-    }
-
     public async Task<IEnumerable<PlayerViewModel>> GetPlayers()
     {
         return await _connection!.InvokeAsync<IEnumerable<PlayerViewModel>>("GetPlayers");
