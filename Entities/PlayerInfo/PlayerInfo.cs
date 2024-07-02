@@ -1,15 +1,17 @@
 using Godot;
 using PixelUno.Adapters;
+using PixelUno.Enums;
 using PixelUno.Signals;
 using PixelUno.ViewModels;
 
 namespace PixelUno.Entities.PlayerInfo;
 
-public partial class PlayerInfo : Control
+public partial class PlayerInfo : PanelContainer
 {
 	[Export] public required Label PlayerName { get; set; }
 	[Export] public required Label Cards { get; set; }
 	[Export] public required string DefaultName { get; set; }
+	[Export] public required AnimationPlayer AnimationPlayer { get; set; }
 
 	private PlayerViewModel? _player;	
 	private SignalRAdapter? _signalR;
@@ -18,6 +20,16 @@ public partial class PlayerInfo : Control
 	{
 		_signalR = GetNode<SignalRAdapter>("/root/SignalRAdapter");
 		_signalR.UpdatePlayerInfo += SignalROnUpdatePlayerInfo;
+		_signalR.TableNextSteps += SignalROnTableNextSteps;
+	}
+
+	private void SignalROnTableNextSteps(int action, PlayerSignal player)
+	{
+		if (player.Id != _player?.Id)
+			return;
+
+		var animation = ((TableAction)action).ToString().ToLower();
+		AnimationPlayer.Play(animation);
 	}
 
 	public override void _Process(double delta)

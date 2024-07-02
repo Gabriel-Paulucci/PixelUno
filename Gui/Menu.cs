@@ -13,7 +13,6 @@ public partial class Menu : Control
     [Export] public required LineEdit TableId { get; set; }
     [Export] public required Button JoinTable { get; set; }
     [Export] public required Button CreateTable { get; set; }
-    [Export] public required VBoxContainer Players { get; set; }
     [Export] public required Button Playing { get; set; }
 
     private SignalRAdapter? _signalR;

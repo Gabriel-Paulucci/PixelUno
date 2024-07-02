@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Gui/Menu.cs" id="1_uhjvg"]
 [ext_resource type="Texture2D" uid="uid://duj14nhw6dm3t" path="res://Logo.png" id="1_vrgla"]
 
-[node name="Menu" type="Control" node_paths=PackedStringArray("LoginPhase", "Host", "PlayerName", "Login", "TablePhase", "TableId", "JoinTable", "CreateTable", "Players", "Playing")]
+[node name="Menu" type="Control" node_paths=PackedStringArray("LoginPhase", "Host", "PlayerName", "Login", "TablePhase", "TableId", "JoinTable", "CreateTable", "Playing")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 10.0
@@ -21,7 +21,6 @@ TablePhase = NodePath("MarginContainer/Panel/VBoxContainer/TablePhase")
 TableId = NodePath("MarginContainer/Panel/VBoxContainer/TablePhase/GridContainer/TableId")
 JoinTable = NodePath("MarginContainer/Panel/VBoxContainer/TablePhase/JoinTable")
 CreateTable = NodePath("MarginContainer/Panel/VBoxContainer/TablePhase/CreateTable")
-Players = NodePath("MarginContainer/Panel/VBoxContainer/Players")
 Playing = NodePath("MarginContainer/Panel/VBoxContainer/Playing")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -49,7 +48,7 @@ offset_right = 187.5
 offset_bottom = 353.0
 grow_horizontal = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel/VBoxContainer"]
+[node name="Logo" type="TextureRect" parent="MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("1_vrgla")
@@ -113,9 +112,23 @@ text = "Criar Mesa"
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="Players" type="VBoxContainer" parent="MarginContainer/Panel/VBoxContainer"]
-layout_mode = 2
-
 [node name="Playing" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
 layout_mode = 2
 text = "Jogar"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 59.0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="MarginContainer2"]
+layout_mode = 2
+text = "v1.0"

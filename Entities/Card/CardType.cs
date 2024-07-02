@@ -8,6 +8,7 @@ public partial class CardType : Resource
 {
     [Export] public CardSymbol Symbol { get; set; }
     [Export] public CardColor Color { get; set; }
+    public required string Id { get; set; }
 
     public int Frame
     {

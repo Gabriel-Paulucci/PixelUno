@@ -48,20 +48,12 @@ public partial class Table : Node2D
     
     private void SignalROnPlayCard(CardSignal card)
     {
-        Game.AddCard(new CardType()
-        {
-            Color = card.Color,
-            Symbol = card.Symbol
-        });
+        Game.AddCard(card);
     }
 
     private void SignalROnAddCard(CardSignal card)
     {
-        CurrentPlayer.AddCard(new CardType()
-        {
-            Color = card.Color,
-            Symbol = card.Symbol
-        });
+        CurrentPlayer.AddCard(card);
     }
 
     private void SignalROnStart()

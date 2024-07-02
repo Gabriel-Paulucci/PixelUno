@@ -1,14 +1,101 @@
-[gd_scene load_steps=2 format=3 uid="uid://thyvwj8ioeli"]
+[gd_scene load_steps=9 format=3 uid="uid://thyvwj8ioeli"]
 
 [ext_resource type="Script" path="res://Entities/PlayerInfo/PlayerInfo.cs" id="1_fojg1"]
+[ext_resource type="StyleBox" uid="uid://b8wj3b3k54tra" path="res://Themes/PlayerInfoTheme.tres" id="1_qmanq"]
 
-[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("PlayerName", "Cards")]
+[sub_resource type="Animation" id="Animation_0mhg0"]
+resource_name = "playing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/panel:border_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.47451, 0.992157, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6sqfx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/panel:border_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8e75s"]
+resource_name = "ok"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/panel:border_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.647059, 1, 0.231373, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rbke2"]
+resource_name = "block"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/panel:border_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.368627, 0.176471, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cnpqr"]
+resource_name = "next"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/panel:border_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.933333, 0.168627, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3rgrd"]
+_data = {
+"RESET": SubResource("Animation_6sqfx"),
+"block": SubResource("Animation_rbke2"),
+"next": SubResource("Animation_cnpqr"),
+"ok": SubResource("Animation_8e75s"),
+"playing": SubResource("Animation_0mhg0")
+}
+
+[node name="PanelContainer" type="PanelContainer" node_paths=PackedStringArray("PlayerName", "Cards", "AnimationPlayer")]
 offset_right = 103.0
 offset_bottom = 70.0
+theme_override_styles/panel = ExtResource("1_qmanq")
 script = ExtResource("1_fojg1")
 PlayerName = NodePath("MarginContainer/VBoxContainer/Name")
 Cards = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Cards")
 DefaultName = "Convidado"
+AnimationPlayer = NodePath("AnimationPlayer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -34,3 +121,8 @@ text = "Cards: "
 [node name="Cards" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "0"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3rgrd")
+}

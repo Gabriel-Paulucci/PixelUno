@@ -34,11 +34,7 @@ public partial class Player : Node2D
 
     private async Task PlatingCard(Card.Card card)
     {
-        await _signalR!.PlayingCard(new CardViewModel()
-        {
-            Color = card.Type.Color,
-            Symbol = card.Type.Symbol
-        });
+        await _signalR!.PlayingCard(card);
 
         RemoveCard(card);
         OrderCards();
@@ -66,11 +62,7 @@ public partial class Player : Node2D
         if (topCard != card)
             return;
         
-        if (!await _signalR!.CheckCard(new CardViewModel()
-            {
-                Color = card.Type.Color,
-                Symbol = card.Type.Symbol
-            }))
+        if (!await _signalR!.CheckCard(card))
             return;
 
         if (card.Type.Color == CardColor.Wild)
