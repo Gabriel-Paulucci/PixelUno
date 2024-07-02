@@ -6,7 +6,6 @@ using PixelUno.Adapters;
 using PixelUno.Entities.Card;
 using PixelUno.Enums;
 using PixelUno.Gui;
-using PixelUno.ViewModels;
 
 namespace PixelUno.Entities.Player;
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://be435qdm334jy"]
+[gd_scene load_steps=114 format=3 uid="uid://be435qdm334jy"]
 
 [ext_resource type="Script" path="res://Entities/Table/Table.cs" id="1_cc2gw"]
 [ext_resource type="PackedScene" uid="uid://ccps1ag01y12d" path="res://Entities/Deck/Deck.tscn" id="2_vavmh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Entities/Card/CardType.cs" id="3_dkghu"]
 [ext_resource type="PackedScene" uid="uid://itmyvi0odkd8" path="res://Entities/Player/Player.tscn" id="4_pqsbt"]
 [ext_resource type="PackedScene" uid="uid://dxiewfweo2nuu" path="res://Entities/PlayerInfo/PlayersInfo.tscn" id="6_e7ve6"]
+[ext_resource type="PackedScene" uid="uid://c4n61irbyyw2p" path="res://Gui/LocalInfo.tscn" id="7_k4tln"]
 
 [sub_resource type="Resource" id="Resource_3g775"]
 script = ExtResource("3_dkghu")
@@ -537,15 +538,14 @@ script = ExtResource("3_dkghu")
 Symbol = 14
 Color = 4
 
-[node name="Table" type="Node2D" node_paths=PackedStringArray("Deck", "CurrentPlayer", "Game", "Start", "PlayersInfo")]
+[node name="Table" type="Node2D" node_paths=PackedStringArray("Deck", "CurrentPlayer", "Game", "Start", "PlayersInfo", "LocalInfo")]
 script = ExtResource("1_cc2gw")
 Deck = NodePath("Deck")
 CurrentPlayer = NodePath("CurrentPlayer")
 Game = NodePath("Game")
-MaxPlayerDelay = 30
-StartPlayerCards = 7
 Start = NodePath("CanvasLayer/Start/Start")
 PlayersInfo = NodePath("CanvasLayer/PlayersInfo")
+LocalInfo = NodePath("CanvasLayer/LocalInfo")
 
 [node name="Deck" parent="." instance=ExtResource("2_vavmh")]
 position = Vector2(248, -25)
@@ -578,3 +578,5 @@ layout_mode = 2
 text = "Iniciar"
 
 [node name="PlayersInfo" parent="CanvasLayer" instance=ExtResource("6_e7ve6")]
+
+[node name="LocalInfo" parent="CanvasLayer" instance=ExtResource("7_k4tln")]

@@ -2,7 +2,7 @@
 
 public enum TableAction
 {
-    Ok,
+    Idle,
     Playing,
     Next,
     Block

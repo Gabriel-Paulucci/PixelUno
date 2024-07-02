@@ -5,6 +5,7 @@ using Godot;
 using PixelUno.Adapters;
 using PixelUno.Entities.Card;
 using PixelUno.Entities.PlayerInfo;
+using PixelUno.Gui;
 using PixelUno.Signals;
 using PixelUno.ViewModels;
 
@@ -15,10 +16,9 @@ public partial class Table : Node2D
     [Export] public required Deck.Deck Deck { get; set; }
     [Export] public required Player.Player CurrentPlayer { get; set; }
     [Export] public required Game.Game Game { get; set; }
-    [Export] public required int MaxPlayerDelay { get; set; }
-    [Export] public required int StartPlayerCards { get; set; }
     [Export] public required Button Start { get; set; }
     [Export] public required PlayersInfo PlayersInfo { get; set; }
+    [Export] public required LocalInfo LocalInfo { get; set; }
 
     private SignalRAdapter? _signalR;
 
@@ -64,6 +64,11 @@ public partial class Table : Node2D
     private async void StartOnPressed()
     {
         await _signalR!.StartGame();
+    }
+
+    public void SetInfo(string playerName, string tableId)
+    {
+        LocalInfo.SetInfo(playerName, tableId);
     }
 
     private void SignalROnJoinPlayer(PlayerSignal player)

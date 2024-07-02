@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 using Microsoft.AspNetCore.SignalR.Client;
-using PixelUno.Enums;
 using PixelUno.Signals;
 using PixelUno.ViewModels;
 
@@ -31,6 +30,9 @@ public partial class SignalRAdapter : Node
     [Signal]
     public delegate void TableNextStepsEventHandler(int action, PlayerSignal player);
 
+    [Signal]
+    public delegate void EndGameEventHandler(PlayerSignal player); 
+
     public async Task Connect(string url)
     {
         var uri = new Uri(url);
@@ -47,8 +49,14 @@ public partial class SignalRAdapter : Node
         _connection.On<CardViewModel>("PlayCard", OnPlayCard);
         _connection.On<PlayerViewModel>("UpdatePlayerInfo", OnUpdatePlayerInfo);
         _connection.On<IEnumerable<TableActionViewModel>>("TableNextSteps", OnTableNextSteps);
+        _connection.On<PlayerViewModel>("EndGame", OnEndGame);
 
         await _connection.StartAsync();
+    }
+
+    private void OnEndGame(PlayerViewModel player)
+    {
+        CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.EndGame, (PlayerSignal)player);
     }
 
     private void OnTableNextSteps(IEnumerable<TableActionViewModel> actions)

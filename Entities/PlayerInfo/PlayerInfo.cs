@@ -8,46 +8,59 @@ namespace PixelUno.Entities.PlayerInfo;
 
 public partial class PlayerInfo : PanelContainer
 {
-	[Export] public required Label PlayerName { get; set; }
-	[Export] public required Label Cards { get; set; }
-	[Export] public required string DefaultName { get; set; }
-	[Export] public required AnimationPlayer AnimationPlayer { get; set; }
+    [Export] public required Label PlayerName { get; set; }
+    [Export] public required Label Cards { get; set; }
+    [Export] public required string DefaultName { get; set; }
 
-	private PlayerViewModel? _player;	
-	private SignalRAdapter? _signalR;
+    [Export] public required StyleBoxFlat StyleIdle { get; set; }
+    [Export] public required StyleBoxFlat StylePlaying { get; set; }
+    [Export] public required StyleBoxFlat StyleBlock { get; set; }
+    [Export] public required StyleBoxFlat StyleNext { get; set; }
 
-	public override void _Ready()
-	{
-		_signalR = GetNode<SignalRAdapter>("/root/SignalRAdapter");
-		_signalR.UpdatePlayerInfo += SignalROnUpdatePlayerInfo;
-		_signalR.TableNextSteps += SignalROnTableNextSteps;
-	}
+    private PlayerViewModel? _player;
+    private SignalRAdapter? _signalR;
 
-	private void SignalROnTableNextSteps(int action, PlayerSignal player)
-	{
-		if (player.Id != _player?.Id)
-			return;
+    public override void _Ready()
+    {
+        _signalR = GetNode<SignalRAdapter>("/root/SignalRAdapter");
+        _signalR.UpdatePlayerInfo += SignalROnUpdatePlayerInfo;
+        _signalR.TableNextSteps += SignalROnTableNextSteps;
+    }
 
-		var animation = ((TableAction)action).ToString().ToLower();
-		AnimationPlayer.Play(animation);
-	}
+    private void SignalROnTableNextSteps(int action, PlayerSignal player)
+    {
+        if (player.Id != _player?.Id)
+            return;
 
-	public override void _Process(double delta)
-	{
-		PlayerName.Text = _player?.Name ?? DefaultName;
-		Cards.Text = _player?.CardAmount.ToString();
-	}
+        var style = ((TableAction)action) switch
+        {
+            TableAction.Idle => StyleIdle,
+            TableAction.Playing => StylePlaying,
+            TableAction.Block => StyleBlock,
+            TableAction.Next => StyleNext,
+            _ => StyleIdle
+        };
+        
+        RemoveThemeStyleboxOverride("panel");
+        AddThemeStyleboxOverride("panel", style);
+    }
 
-	private void SignalROnUpdatePlayerInfo(PlayerSignal player)
-	{
-		if (player.Id != _player?.Id)
-			return;
+    public override void _Process(double delta)
+    {
+        PlayerName.Text = _player?.Name ?? DefaultName;
+        Cards.Text = _player?.CardAmount.ToString();
+    }
 
-		_player = player;
-	}
+    private void SignalROnUpdatePlayerInfo(PlayerSignal player)
+    {
+        if (player.Id != _player?.Id)
+            return;
 
-	public void SetPlayer(PlayerViewModel player)
-	{
-		_player = player;
-	}
+        _player = player;
+    }
+
+    public void SetPlayer(PlayerViewModel player)
+    {
+        _player = player;
+    }
 }
