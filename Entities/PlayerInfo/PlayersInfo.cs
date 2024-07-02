@@ -7,7 +7,7 @@ public partial class PlayersInfo : MarginContainer
 {
 	[Export] public required Node List { get; set; }
 	[Export] public required PackedScene PlayerInfo { get; set; }
-
+	
 	public void AddPlayer(PlayerViewModel player)
 	{
 		var playerInfo = PlayerInfo.Instantiate<PixelUno.Entities.PlayerInfo.PlayerInfo>();

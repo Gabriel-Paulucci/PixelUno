@@ -24,6 +24,9 @@ public partial class SignalRAdapter : Node
     [Signal]
     public delegate void PlayCardEventHandler(CardSignal card);
 
+    [Signal]
+    public delegate void UpdatePlayerInfoEventHandler(PlayerSignal player);
+
     public async Task Connect(string url)
     {
         var uri = new Uri(url);
@@ -38,6 +41,7 @@ public partial class SignalRAdapter : Node
         _connection.On("Start", OnStart);
         _connection.On<CardViewModel>("AddCard", OnAddCard);
         _connection.On<CardViewModel>("PlayCard", OnPlayCard);
+        _connection.On<PlayerViewModel>("UpdatePlayerInfo", OnUpdatePlayerInfo);
 
         await _connection.StartAsync();
     }
@@ -60,6 +64,11 @@ public partial class SignalRAdapter : Node
     private void OnJoinPlayer(PlayerViewModel player)
     {
         CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.JoinPlayer, (PlayerSignal)player);
+    }
+
+    private void OnUpdatePlayerInfo(PlayerViewModel player)
+    {
+        CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.UpdatePlayerInfo, (PlayerSignal)player);
     }
 
     public async Task<PlayerViewModel> SetPlayerName(string name)
