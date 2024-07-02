@@ -19,22 +19,35 @@ public partial class Main : Node2D
     {
         _signalR = GetNode<SignalRAdapter>("/root/SignalRAdapter");
         _signalR.EndGame += SignalROnEndGame;
+        _signalR.Clear += SignalROnClear;
         
         Menu.EnterInGame += MenuOnEnterInGame;
         EndGame.GoHome += EndGameOnGoHome;
     }
 
+    private void SignalROnClear()
+    {
+        ClearGame();
+    }
+
     private void SignalROnEndGame(PlayerSignal player)
     {
-        
         EndGame.Show();
         EndGame.SetWinnerName(player);
     }
 
-    private void EndGameOnGoHome()
+    private async void EndGameOnGoHome()
     {
-        _table?.QueueFree();
+        await _signalR!.Leave();
+        ClearGame();
+    }
+
+    private void ClearGame()
+    {
+        _table?.Free();
+        _table = null;
         EndGame.Hide();
+        Menu.ClearData();
         Menu.Show();
     }
 

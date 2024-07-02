@@ -31,7 +31,10 @@ public partial class SignalRAdapter : Node
     public delegate void TableNextStepsEventHandler(int action, PlayerSignal player);
 
     [Signal]
-    public delegate void EndGameEventHandler(PlayerSignal player); 
+    public delegate void EndGameEventHandler(PlayerSignal player);
+
+    [Signal]
+    public delegate void ClearEventHandler();
 
     public async Task Connect(string url)
     {
@@ -50,8 +53,14 @@ public partial class SignalRAdapter : Node
         _connection.On<PlayerViewModel>("UpdatePlayerInfo", OnUpdatePlayerInfo);
         _connection.On<IEnumerable<TableActionViewModel>>("TableNextSteps", OnTableNextSteps);
         _connection.On<PlayerViewModel>("EndGame", OnEndGame);
+        _connection.On("Clear", OnClear);
 
         await _connection.StartAsync();
+    }
+
+    private void OnClear()
+    {
+        CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.Clear);
     }
 
     private void OnEndGame(PlayerViewModel player)
@@ -131,5 +140,10 @@ public partial class SignalRAdapter : Node
     public async Task<IEnumerable<PlayerViewModel>> GetPlayers()
     {
         return await _connection!.InvokeAsync<IEnumerable<PlayerViewModel>>("GetPlayers");
+    }
+
+    public async Task Leave()
+    {
+        await _connection!.SendAsync("Leave");
     }
 }

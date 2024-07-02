@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://thyvwj8ioeli"]
 
 [ext_resource type="Script" path="res://Entities/PlayerInfo/PlayerInfo.cs" id="1_fojg1"]
-[ext_resource type="StyleBox" uid="uid://drw8rl7rxj4jc" path="res://Themes/PlayerInfoThemeIdle.tres" id="2_g16cy"]
-[ext_resource type="StyleBox" uid="uid://b8wj3b3k54tra" path="res://Themes/PlayerInfoThemePlaying.tres" id="3_juk3k"]
-[ext_resource type="StyleBox" uid="uid://gcebfd64nfjn" path="res://Themes/PlayerInfoThemeBlock.tres" id="4_duoby"]
-[ext_resource type="StyleBox" uid="uid://cqufhsbxgtomv" path="res://Themes/PlayerInfoThemeNext.tres" id="5_10gf4"]
+[ext_resource type="StyleBox" uid="uid://drw8rl7rxj4jc" path="res://Entities/PlayerInfo/Theme/PlayerInfoThemeIdle.tres" id="2_g16cy"]
+[ext_resource type="StyleBox" uid="uid://b8wj3b3k54tra" path="res://Entities/PlayerInfo/Theme/PlayerInfoThemePlaying.tres" id="3_juk3k"]
+[ext_resource type="StyleBox" uid="uid://gcebfd64nfjn" path="res://Entities/PlayerInfo/Theme/PlayerInfoThemeBlock.tres" id="4_duoby"]
+[ext_resource type="StyleBox" uid="uid://cqufhsbxgtomv" path="res://Entities/PlayerInfo/Theme/PlayerInfoThemeNext.tres" id="5_10gf4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_caso7"]
 bg_color = Color(0, 0, 0, 0.455)

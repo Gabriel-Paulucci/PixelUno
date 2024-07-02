@@ -27,6 +27,12 @@ public partial class PlayerInfo : PanelContainer
         _signalR.TableNextSteps += SignalROnTableNextSteps;
     }
 
+    public override void _ExitTree()
+    {
+        _signalR!.UpdatePlayerInfo -= SignalROnUpdatePlayerInfo;
+        _signalR.TableNextSteps -= SignalROnTableNextSteps;
+    }
+
     private void SignalROnTableNextSteps(int action, PlayerSignal player)
     {
         if (player.Id != _player?.Id)

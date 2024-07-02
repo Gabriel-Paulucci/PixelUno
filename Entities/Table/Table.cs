@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 using PixelUno.Adapters;
-using PixelUno.Entities.Card;
 using PixelUno.Entities.PlayerInfo;
 using PixelUno.Gui;
 using PixelUno.Signals;
-using PixelUno.ViewModels;
 
 namespace PixelUno.Entities.Table;
 
@@ -34,6 +32,14 @@ public partial class Table : Node2D
         Start.Pressed += StartOnPressed;
         
         await LoadPlayers();
+    }
+
+    public override void _ExitTree()
+    {
+        _signalR!.JoinPlayer -= SignalROnJoinPlayer;
+        _signalR.Start -= SignalROnStart;
+        _signalR.AddCard -= SignalROnAddCard;
+        _signalR.PlayCard -= SignalROnPlayCard;
     }
 
     private async Task LoadPlayers()

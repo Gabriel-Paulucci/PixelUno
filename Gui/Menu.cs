@@ -42,6 +42,7 @@ public partial class Menu : Control
     {
         var tableId = await _signalR?.CreateTable()!;
         TableId.Text = tableId;
+        CreateTable.Hide();
     }
 
     private async void JoinTableOnPressed()
@@ -59,5 +60,13 @@ public partial class Menu : Control
         await _signalR.SetPlayerName(PlayerName.Text);
         LoginPhase.Hide();
         TablePhase.Show();
+    }
+
+    public void ClearData()
+    {
+        TableId.Text = "";
+        Playing.Hide();
+        JoinTable.Show();
+        CreateTable.Show();
     }
 }

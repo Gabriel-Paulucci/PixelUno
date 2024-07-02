@@ -13,7 +13,6 @@ public partial class EndGame : Control
 	
 	public override void _Ready()
 	{
-		
 		Home.Pressed += HomeOnPressed;
 	}
 
