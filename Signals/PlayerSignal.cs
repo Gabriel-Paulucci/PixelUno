@@ -1,4 +1,5 @@
 ﻿using Godot;
+using PixelUno.Enums;
 using PixelUno.ViewModels;
 
 namespace PixelUno.Signals;
@@ -8,6 +9,7 @@ public partial class PlayerSignal : GodotObject
     public required string Id { get; set; }
     public required string Name { get; set; }
     public int CardAmount { get; set; }
+    public TableAction Action { get; set; }
 
     public static implicit operator PlayerSignal(PlayerViewModel player)
     {
@@ -15,7 +17,8 @@ public partial class PlayerSignal : GodotObject
         {
             Id = player.Id,
             Name = player.Name,
-            CardAmount = player.CardAmount
+            CardAmount = player.CardAmount,
+            Action = player.Action
         };
     }
     
@@ -25,7 +28,8 @@ public partial class PlayerSignal : GodotObject
         {
             Id = playerSignal.Id,
             Name = playerSignal.Name,
-            CardAmount = playerSignal.CardAmount
+            CardAmount = playerSignal.CardAmount,
+            Action = playerSignal.Action
         };
     }
 }

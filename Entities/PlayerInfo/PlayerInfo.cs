@@ -24,21 +24,33 @@ public partial class PlayerInfo : PanelContainer
     {
         _signalR = GetNode<SignalRAdapter>("/root/SignalRAdapter");
         _signalR.UpdatePlayerInfo += SignalROnUpdatePlayerInfo;
-        _signalR.TableNextSteps += SignalROnTableNextSteps;
     }
 
     public override void _ExitTree()
     {
         _signalR!.UpdatePlayerInfo -= SignalROnUpdatePlayerInfo;
-        _signalR.TableNextSteps -= SignalROnTableNextSteps;
     }
 
-    private void SignalROnTableNextSteps(int action, PlayerSignal player)
+    private void SignalROnUpdatePlayerInfo(PlayerSignal player)
     {
         if (player.Id != _player?.Id)
             return;
+        
+        _player = player;
+        UpdateData();
+    }
 
-        var style = ((TableAction)action) switch
+    public void SetPlayer(PlayerViewModel player)
+    {
+        _player = player;
+        UpdateData();
+    }
+
+    private void UpdateData()
+    {
+        PlayerName.Text = _player?.Name ?? DefaultName;
+        Cards.Text = _player?.CardAmount.ToString();
+        var style = _player?.Action switch
         {
             TableAction.Idle => StyleIdle,
             TableAction.Playing => StylePlaying,
@@ -49,24 +61,5 @@ public partial class PlayerInfo : PanelContainer
         
         RemoveThemeStyleboxOverride("panel");
         AddThemeStyleboxOverride("panel", style);
-    }
-
-    public override void _Process(double delta)
-    {
-        PlayerName.Text = _player?.Name ?? DefaultName;
-        Cards.Text = _player?.CardAmount.ToString();
-    }
-
-    private void SignalROnUpdatePlayerInfo(PlayerSignal player)
-    {
-        if (player.Id != _player?.Id)
-            return;
-
-        _player = player;
-    }
-
-    public void SetPlayer(PlayerViewModel player)
-    {
-        _player = player;
     }
 }
