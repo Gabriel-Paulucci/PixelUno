@@ -19,4 +19,14 @@ public class CardViewModel
             Symbol = card.Type.Symbol
         };
     }
+    
+    public static implicit operator CardType(CardViewModel card)
+    {
+        return new CardType()
+        {
+            Id = card.Id,
+            Color = card.Color,
+            Symbol = card.Symbol
+        };
+    }
 }

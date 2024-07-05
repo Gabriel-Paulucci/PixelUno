@@ -89,5 +89,12 @@ public partial class Table : Node2D
     {
         Start.Hide();
         await _signalR!.GetMyCards();
+
+        var lastCard = await _signalR.GetTableCard();
+
+        if (lastCard is not null)
+        {
+            Game.AddCard(lastCard);
+        }
     }
 }

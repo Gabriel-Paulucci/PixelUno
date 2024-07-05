@@ -104,43 +104,43 @@ public partial class SignalRAdapter : Node
 
     public async Task<PlayerViewModel> SetPlayerName(string name)
     {
-        return await _connection!.InvokeAsync<PlayerViewModel>("SetPlayerName", name);
+        return await _connection!.InvokeAsync<PlayerViewModel>(nameof(SetPlayerName), name);
     }
 
     public async Task<string> CreateTable()
     {
-        var tableId = await _connection!.InvokeAsync<string>("CreateTable");
+        var tableId = await _connection!.InvokeAsync<string>(nameof(CreateTable));
         return tableId;
     }
 
     public async Task JoinTable(string tableId)
     {
-        await _connection!.SendAsync("JoinTable", tableId);
+        await _connection!.SendAsync(nameof(JoinTable), tableId);
     }
 
     public async Task StartGame()
     {
-        await _connection!.SendAsync("StartGame");
+        await _connection!.SendAsync(nameof(StartGame));
     }
 
     public async Task BuyCard()
     {
-        await _connection!.SendAsync("BuyCard");
+        await _connection!.SendAsync(nameof(BuyCard));
     }
 
     public async Task<bool> CheckCard(CardViewModel card)
     {
-        return await _connection!.InvokeAsync<bool>("CheckCard", card);
+        return await _connection!.InvokeAsync<bool>(nameof(CheckCard), card);
     }
 
     public async Task PlayingCard(CardViewModel card)
     {
-        await _connection!.SendAsync("PlayingCard", card);
+        await _connection!.SendAsync(nameof(PlayingCard), card);
     }
 
     public async Task<IEnumerable<PlayerViewModel>> GetPlayers()
     {
-        return await _connection!.InvokeAsync<IEnumerable<PlayerViewModel>>("GetPlayers");
+        return await _connection!.InvokeAsync<IEnumerable<PlayerViewModel>>(nameof(GetPlayers));
     }
 
     public async Task Leave()
@@ -150,7 +150,7 @@ public partial class SignalRAdapter : Node
 
     public async Task GetMyCards()
     {
-        var cards = await _connection!.InvokeAsync<IEnumerable<CardViewModel>>("GetMyCards");
+        var cards = await _connection!.InvokeAsync<IEnumerable<CardViewModel>>(nameof(GetMyCards));
 
         foreach (var card in cards)
         {
@@ -160,6 +160,11 @@ public partial class SignalRAdapter : Node
 
     public async Task<bool> AlreadyStarted()
     {
-        return await _connection!.InvokeAsync<bool>("GetMyCards");
+        return await _connection!.InvokeAsync<bool>(nameof(AlreadyStarted));
+    }
+
+    public async Task<CardViewModel?> GetTableCard()
+    {
+        return await _connection!.InvokeAsync<CardViewModel?>(nameof(GetTableCard));
     }
 }
