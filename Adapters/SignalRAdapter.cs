@@ -72,7 +72,8 @@ public partial class SignalRAdapter : Node
     {
         foreach (var action in actions)
         {
-            CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.TableNextSteps, (int)action.Action, (PlayerSignal)action.Player);
+            CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.TableNextSteps, (int)action.Action,
+                (PlayerSignal)action.Player);
         }
     }
 
@@ -145,5 +146,20 @@ public partial class SignalRAdapter : Node
     public async Task Leave()
     {
         await _connection!.SendAsync("Leave");
+    }
+
+    public async Task GetMyCards()
+    {
+        var cards = await _connection!.InvokeAsync<IEnumerable<CardViewModel>>("GetMyCards");
+
+        foreach (var card in cards)
+        {
+            CallDeferred(GodotObject.MethodName.EmitSignal, SignalName.AddCard, (CardSignal)card);
+        }
+    }
+
+    public async Task<bool> AlreadyStarted()
+    {
+        return await _connection!.InvokeAsync<bool>("GetMyCards");
     }
 }

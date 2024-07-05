@@ -20,7 +20,7 @@ public partial class Main : Node2D
         _signalR = GetNode<SignalRAdapter>("/root/SignalRAdapter");
         _signalR.EndGame += SignalROnEndGame;
         _signalR.Clear += SignalROnClear;
-        
+
         Menu.EnterInGame += MenuOnEnterInGame;
         EndGame.GoHome += EndGameOnGoHome;
     }
@@ -51,7 +51,7 @@ public partial class Main : Node2D
         Menu.Show();
     }
 
-    private void MenuOnEnterInGame()
+    private async void MenuOnEnterInGame()
     {
         Menu.Hide();
         EndGame.Hide();
@@ -59,5 +59,12 @@ public partial class Main : Node2D
         _table = TableScene.Instantiate<Table>();
         _table.SetInfo(Menu.PlayerName.Text, Menu.TableId.Text);
         AddChild(_table);
+
+        var alreadyStarted = await _signalR!.AlreadyStarted();
+
+        if (alreadyStarted)
+        {
+            await _table.Started();
+        }
     }
 }

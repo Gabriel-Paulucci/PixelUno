@@ -47,6 +47,8 @@ public partial class Menu : Control
 
     private async void JoinTableOnPressed()
     {
+        CreateTable.Hide();
+        JoinTable.Hide();
         await _signalR?.JoinTable(TableId.Text)!;
         Playing.Show();
     }

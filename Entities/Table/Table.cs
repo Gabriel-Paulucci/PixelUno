@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 using PixelUno.Adapters;
@@ -85,5 +83,11 @@ public partial class Table : Node2D
     private async void DeckOnBuyCard()
     {
         await _signalR!.BuyCard();
+    }
+
+    public async Task Started()
+    {
+        Start.Hide();
+        await _signalR!.GetMyCards();
     }
 }
