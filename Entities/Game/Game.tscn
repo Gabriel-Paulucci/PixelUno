@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://vhml6a3r0sob"]
-
-[ext_resource type="Script" path="res://Entities/Game/Game.cs" id="1_kagef"]
-[ext_resource type="PackedScene" uid="uid://chouje6bh08ni" path="res://Entities/Card/Card.tscn" id="2_1lk5t"]
-
-[node name="Game" type="Node2D"]
-script = ExtResource("1_kagef")
-CardScene = ExtResource("2_1lk5t")
